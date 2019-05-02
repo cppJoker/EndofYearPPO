@@ -36,7 +36,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
 void MainWindow::Init(){
     ui->checkBox->setChecked(false);
-    setWindowTitle("Secondaire 3 End of Year Helper");
+    setWindowTitle("Secondaire 3: Relations et fonctions");
     ui->centralWidget->setLayout(ui->gridLayout);
     ui->tab->setLayout(ui->gridLayout_2);
     ui->tab_4->setLayout(ui->gridLayout_5);
@@ -48,7 +48,7 @@ void MainWindow::Init(){
     ui->tab_11->setLayout(ui->gridLayout_8);
     //ui->tab_12->setLayout(ui->gridLayout_10);
     QLabel *author = new QLabel();
-    author->setText("Author: Mohamed A. Laghrour || <b>Utilisation personelle</b>");
+    author->setText("Auteur: Mohamed A. Laghrour || <b>Utilisation personelle</b>");
     statusBar()->addWidget(author);
     setFixedSize(size());
 }
@@ -397,7 +397,7 @@ void MainWindow::on_pushButton_clicked()
 
 void MainWindow::on_pushButton_3_clicked()
 {
-    ImageWindow1 * image = new ImageWindow1("Relations et fonctions explication/mode de representation",":/new/prefix1/_pdp_sq_.jpg");
+    ImageWindow1 * image = new ImageWindow1("Relations et fonctions/mode de representation",":/new/prefix1/_pdp_sq_.jpg");
     image->show();
 }
 
