@@ -58,28 +58,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-/*
- *
- * Coords cord11{
-        -10,0
-    };
-
-    Coords cord12{
-        -14,6
-    };
-    Coords cord21{
-        0,0
-    };
-    Coords cord22{
-        -15,5
-    };
-    cord1.push_back(cord11);
-    cord1.push_back(cord12);
-    cord2.push_back(cord21);
-    cord2.push_back(cord22);
- */
-
-void MainWindow::on_pushButton_2_clicked() // Calculer
+void MainWindow::on_pushButton_2_clicked()
 {
     std::vector<Coords> cord1;
     std::vector<Coords> cord2;
@@ -127,35 +106,36 @@ void MainWindow::on_pushButton_2_clicked() // Calculer
                 "</dl>");
     //Graphique
     if(ui->checkBox->isChecked()){
-    double lookedx = R3 - ui->lineEdit->text().toInt();
-    double Forwardx = R3 + ui->lineEdit->text().toInt();
+        double lookedx = R3 - ui->lineEdit->text().toInt();
+        double Forwardx = R3 + ui->lineEdit->text().toInt();
 
-    double YL1; double YF1; double YL2; double YF2;
-    {double x = lookedx; double a = Regle1_A; double b = Regle1_B; YL1 =(a*x) + b;}
-    {double x = Forwardx; double a = Regle1_A; double b = Regle1_B; YF1 =(a*x) + b;}
-    {double x = lookedx; double a = Regle2_A; double b = Regle2_B; YL2 =(a*x) + b;}
-    {double x = Forwardx; double a = Regle2_A; double b = Regle2_B; YF2 =(a*x) + b;}
-    Coords Regle1C{
-        lookedx,YL1
-    };
-    Coords Regle2C{
-         lookedx, YL2
-    };
+        double YL1; double YF1; double YL2; double YF2;
+        {double x = lookedx; double a = Regle1_A; double b = Regle1_B; YL1 =(a*x) + b;}
+        {double x = Forwardx; double a = Regle1_A; double b = Regle1_B; YF1 =(a*x) + b;}
+        {double x = lookedx; double a = Regle2_A; double b = Regle2_B; YL2 =(a*x) + b;}
+        {double x = Forwardx; double a = Regle2_A; double b = Regle2_B; YF2 =(a*x) + b;}
 
-    Coords Regle1C2{
-         Forwardx, YF1
-    };
-    Coords Regle2C2{
-         Forwardx, YF2
-    };
-    cord1.push_back(Regle1C);
-    cord1.push_back(Regle1C2);
-    cord2.push_back(Regle2C);
-    cord2.push_back(Regle2C2);
+        Coords Regle1C{
+            lookedx,YL1
+        };
+        Coords Regle2C{
+             lookedx, YL2
+        };
+        Coords Regle1C2{
+             Forwardx, YF1
+        };
+        Coords Regle2C2{
+             Forwardx, YF2
+        };
 
-    std::reverse(cord1.begin(), cord1.end());
-    std::reverse(cord2.begin(), cord2.end());
-    GenerateChart(cord1,cord2, R3);
+        cord1.push_back(Regle1C);
+        cord1.push_back(Regle1C2);
+        cord2.push_back(Regle2C);
+        cord2.push_back(Regle2C2);
+
+        std::reverse(cord1.begin(), cord1.end());
+        std::reverse(cord2.begin(), cord2.end());
+        GenerateChart(cord1,cord2, R3);
     }
 }
 
@@ -183,8 +163,8 @@ void MainWindow::GenerateChart(std::vector<Coords> coord1, std::vector<Coords> c
        series2->setName(ui->Demarche2_Regle->text().mid(7));
        series2->setColor(Qt::red);
        chart->addSeries(series2);
-       axisX->setTitleText("X");
-       axisY->setTitleText("Y");
+       axisX->setTitleText("Axe des X");
+       axisY->setTitleText("Axe des Y");
        series2->attachAxis(axisY);
        series2->attachAxis(axisX);
 
@@ -194,7 +174,7 @@ void MainWindow::GenerateChart(std::vector<Coords> coord1, std::vector<Coords> c
        window->setCentralWidget(chartView);
        window->setStyleSheet("background-color: transparent");
        window->resize(800,600);
-       window->setWindowTitle("Graphique d'intersection");
+       window->setWindowTitle("Graphique d'intersection // Precision X: " + ui->lineEdit->text() + " Precision Y: " + ui->lineEdit_2->text());
        window->show();
 }
 
