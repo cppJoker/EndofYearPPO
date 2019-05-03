@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "calculator.h"
+#include <QLineEdit>
 #include <QCloseEvent>
 #include "imagewindow1.h"
 
@@ -23,7 +24,7 @@ private slots:
     void closeEvent (QCloseEvent *event);
     void on_pushButton_2_clicked();
     void GenerateChart(std::vector<Coords> coord1, std::vector<Coords> coord2, double x_x);
-
+    void GenerateRule (QString a, QString b, QLineEdit * lineEdit);
     void on_TrouverB_X_textChanged(const QString &arg1);
 
     void on_TrouverB_Y_textChanged(const QString &arg1);
@@ -61,6 +62,10 @@ private slots:
     void on_pushButton_3_clicked();
 
     void on_pushButton_4_clicked();
+
+    void on_lineEdit_2_textChanged(const QString &arg1);
+
+    void on_Demarche1_Regle_textChanged(const QString &arg1);
 
 private:
     Ui::MainWindow *ui;

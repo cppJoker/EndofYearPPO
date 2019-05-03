@@ -14,11 +14,27 @@
 #include <QtCharts/QLogValueAxis>
 #include <vector>
 #include "imagewindow1.h"
+#include <QCloseEvent>
 
 using namespace QtCharts;
 
 
-#include <QCloseEvent>
+bool doesHaveChar(QString & str){
+    for (int i = 0; i < str.length(); i++) {
+        QChar c = str[i];
+        if(c == ','){
+            str[i] = '.';
+        }
+    }
+    for (int i = 0; i < str.length(); i++) {
+       QChar c = str[i];
+       if(c.isLetter()){
+            return true;
+       }
+
+    }
+    return false;
+}
 void MainWindow::closeEvent (QCloseEvent *event)
 {
     if(window->isVisible())
@@ -62,10 +78,17 @@ void MainWindow::on_pushButton_2_clicked()
 {
     std::vector<Coords> cord1;
     std::vector<Coords> cord2;
-    double Regle1_A = ui->Demarche1_A->text().toDouble();
-    double Regle1_B = ui->Demarche1_B->text().toDouble();
-    double Regle2_A = ui->Demarche2_A->text().toDouble();
-    double Regle2_B = ui->Demarche2_B->text().toDouble();
+    QString SRegle1_A = ui->Demarche1_A->text();
+    QString SRegle1_B = ui->Demarche1_B->text();
+    QString SRegle2_A = ui->Demarche2_A->text();
+    QString SRegle2_B = ui->Demarche2_B->text();
+    if(doesHaveChar(SRegle1_A) || doesHaveChar(SRegle1_B) || doesHaveChar(SRegle2_A) || doesHaveChar(SRegle2_B)){
+        return;
+    }
+    double Regle1_A = SRegle1_A.toDouble();
+    double Regle1_B = SRegle1_B.toDouble();
+    double Regle2_A = SRegle2_A.toDouble();
+    double Regle2_B = SRegle2_B.toDouble();
     if(Regle1_A == Regle2_A){
         ui->Demarche_Edit->setHtml("<dl style=\"text-align:center\"> Calcul impossible: <b>A1 = A2</b> </dl>");
         return;
@@ -108,7 +131,9 @@ void MainWindow::on_pushButton_2_clicked()
     if(ui->checkBox->isChecked()){
         double lookedx = R3 - ui->lineEdit->text().toInt();
         double Forwardx = R3 + ui->lineEdit->text().toInt();
-
+        if(Regle1_A == 0 || Regle2_A == 0){
+            return;
+        }
         double YL1; double YF1; double YL2; double YF2;
         {double x = lookedx; double a = Regle1_A; double b = Regle1_B; YL1 =(a*x) + b;}
         {double x = Forwardx; double a = Regle1_A; double b = Regle1_B; YF1 =(a*x) + b;}
@@ -178,27 +203,16 @@ void MainWindow::GenerateChart(std::vector<Coords> coord1, std::vector<Coords> c
        window->show();
 }
 
-bool doesHaveChar(QString & str){
-    for (int i = 0; i < str.length(); i++) {
-        QChar c = str[i];
-        if(c == ','){
-            str[i] = '.';
-        }
-    }
-    for (int i = 0; i < str.length(); i++) {
-       QChar c = str[i];
-       if(c.isLetter()){
-            return true;
-       }
+void MainWindow::GenerateRule (QString a, QString b, QLineEdit * lineEdit){
 
-    }
-    return false;
-}
-void GenerateRule (QString a, QString b, QLineEdit * lineEdit){
     if(doesHaveChar(a) || doesHaveChar(b)){
         lineEdit->setText("Calcul impossible");
         return;
         }
+    if(a.toDouble() == 0.00000000000){
+        lineEdit->setText("Calcul impossbile: a = 0 (x * 0 = 0)");
+        return;
+    }
     double _a = a.toDouble();
     double _b = b.toDouble();
     QString rule = "Regle: y = " + QString::number(_a) + "x + " + QString::number(_b);
@@ -211,12 +225,17 @@ void Calcul(Fonction f, QString arg1, QString arg2, QString arg3, QLineEdit * li
         lineEdit->setText("Calcul impossible");
         return;
     }
+
     QString result;
     switch (f) {
     case TROUVERX:
     {
         double b = arg3.toDouble();
         double a = arg2.toDouble();
+        if(a == 0.00000000000){
+            lineEdit->setText("Calcul impossbile: a = 0 (x * 0 = 0)");
+            return;
+        }
         double y = arg1.toDouble();
         double res = 0;
         /*
@@ -234,6 +253,10 @@ void Calcul(Fonction f, QString arg1, QString arg2, QString arg3, QLineEdit * li
         double x = arg1.toDouble();
         double y = arg2.toDouble();
         double a = arg3.toDouble();
+        if(a == 0.00000000000){
+            lineEdit->setText("Calcul impossbile: a = 0 (x * 0 = 0)");
+            return;
+        }
         double res = 0;
         /*
          *15 = 2*5 + b
@@ -248,6 +271,10 @@ void Calcul(Fonction f, QString arg1, QString arg2, QString arg3, QLineEdit * li
     {
         double x = arg1.toDouble();
         double a = arg2.toDouble();
+        if(a == 0.00000000000){
+            lineEdit->setText("Calcul impossbile: a = 0 (x * 0 = 0)");
+            return;
+        }
         double b = arg3.toDouble();
         double res = 0;
         /*
@@ -272,10 +299,6 @@ void MainWindow::on_TrouverB_Y_textChanged(const QString &arg1)
 }
 void MainWindow::on_TrouverB_A_textChanged(const QString &arg1)
 {
-    if(arg1.toDouble() == 0.00000000000){
-        ui->TrouverB_Reponse->setText("Calcul impossbile: a = 0 (x * 0 = 0)");
-        return;
-    }
     Calcul(TROUVERB, ui->TrouverB_X->text(), ui->TrouverB_Y->text(), ui->TrouverB_A->text(), ui->TrouverB_Reponse);
 }
 void MainWindow::on_TrouverX_Y_textChanged(const QString &arg1)
@@ -284,10 +307,6 @@ void MainWindow::on_TrouverX_Y_textChanged(const QString &arg1)
 }
 void MainWindow::on_TrouverX_A_textChanged(const QString &arg1)
 {
-    if(arg1.toDouble() == 0.00000000000){
-        ui->TrouverX_Reponse->setText("Calcul impossbile: a = 0 (x * 0 = 0)");
-        return;
-    }
     Calcul(TROUVERX, ui->TrouverX_Y->text(), ui->TrouverX_A->text(), ui->TrouverX_B->text(), ui->TrouverX_Reponse);
 }
 void MainWindow::on_TrouverX_B_textChanged(const QString &arg1)
@@ -300,10 +319,6 @@ void MainWindow::on_TrouverY_X_textChanged(const QString &arg1)
 }
 void MainWindow::on_TrouverY_A_textChanged(const QString &arg1)
 {
-    if(arg1.toDouble() == 0.00000000000){
-        ui->TrouverY_Reponse->setText("Calcul impossbile: a = 0 (x * 0 = 0)");
-        return;
-    }
     Calcul(TROUVERY, ui->TrouverY_X->text(), ui->TrouverY_A->text(), ui->TrouverX_B->text(), ui->TrouverY_Reponse);
 }
 void MainWindow::on_TrouverY_B_textChanged(const QString &arg1)
@@ -314,10 +329,7 @@ void MainWindow::on_TrouverY_B_textChanged(const QString &arg1)
 
 void MainWindow::on_Demarche1_A_textChanged(const QString &arg1)
 {
-    if(arg1.toDouble() == 0.00000000000){
-        ui->Demarche1_Regle->setText("Calcul impossbile: a = 0 (x * 0 = 0)");
-        return;
-    }
+
     GenerateRule(ui->Demarche1_A->text(), ui->Demarche1_B->text(), ui->Demarche1_Regle);
 }
 
@@ -328,10 +340,6 @@ void MainWindow::on_Demarche1_B_textChanged(const QString &arg1)
 
 void MainWindow::on_Demarche2_A_textChanged(const QString &arg1)
 {
-    if(arg1.toDouble() == 0.00000000000){
-        ui->Demarche2_Regle->setText("Calcul impossbile: a = 0 (x * 0 = 0)");
-        return;
-    }
     GenerateRule(ui->Demarche2_A->text(), ui->Demarche2_B->text(), ui->Demarche2_Regle);
 }
 
@@ -385,4 +393,17 @@ void MainWindow::on_pushButton_4_clicked()
 {
     ImageWindow1 * image = new ImageWindow1("Algebre/Inequation",":/new/prefix1/inequation.jpg");
     image->show();
+}
+
+void MainWindow::on_lineEdit_2_textChanged(const QString &arg1)
+{
+    QString nw = arg1;
+    if((arg1.toInt() <= 1) || doesHaveChar(nw)){
+        ui->lineEdit_2->setText("2");
+    }
+}
+
+void MainWindow::on_Demarche1_Regle_textChanged(const QString &arg1)
+{
+
 }
