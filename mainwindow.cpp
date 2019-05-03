@@ -18,7 +18,6 @@
 
 using namespace QtCharts;
 
-
 bool doesHaveChar(QString & str){
     for (int i = 0; i < str.length(); i++) {
         QChar c = str[i];
@@ -35,6 +34,7 @@ bool doesHaveChar(QString & str){
     }
     return false;
 }
+
 void MainWindow::closeEvent (QCloseEvent *event)
 {
     if(window->isVisible())
@@ -46,7 +46,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
     Init();
 }
 
@@ -82,6 +81,7 @@ void MainWindow::on_pushButton_2_clicked()
     QString SRegle1_B = ui->Demarche1_B->text();
     QString SRegle2_A = ui->Demarche2_A->text();
     QString SRegle2_B = ui->Demarche2_B->text();
+
     if(doesHaveChar(SRegle1_A) || doesHaveChar(SRegle1_B) || doesHaveChar(SRegle2_A) || doesHaveChar(SRegle2_B)){
         return;
     }
@@ -93,6 +93,7 @@ void MainWindow::on_pushButton_2_clicked()
         ui->Demarche_Edit->setHtml("<dl style=\"text-align:center\"> Calcul impossible: <b>A1 = A2</b> </dl>");
         return;
     }
+
     double R1 = Regle2_A - Regle1_A;
     double R2 = R1 - Regle2_B;
     double R = Regle1_B - Regle2_B;
@@ -171,7 +172,8 @@ void MainWindow::GenerateChart(std::vector<Coords> coord1, std::vector<Coords> c
        chart->addAxis(axisX, Qt::AlignBottom);
        QSplineSeries *series = new QSplineSeries;
        for(auto i: coord1)
-       series->append(i.x,i.y);
+            series->append(i.x,i.y);
+
        series->setColor(Qt::blue);
        series->setName(ui->Demarche1_Regle->text().mid(7));
        chart->addSeries(series);
@@ -184,7 +186,8 @@ void MainWindow::GenerateChart(std::vector<Coords> coord1, std::vector<Coords> c
 
        QSplineSeries *series2 = new QSplineSeries;
        for(auto i: coord2)
-       series2->append(i.x,i.y);
+            series2->append(i.x,i.y);
+
        series2->setName(ui->Demarche2_Regle->text().mid(7));
        series2->setColor(Qt::red);
        chart->addSeries(series2);
