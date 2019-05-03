@@ -13,6 +13,8 @@
 #include <QtCharts/QValueAxis>
 #include <QtCharts/QLogValueAxis>
 #include <vector>
+#include <QMessageBox>
+#include <QProcess>
 #include "imagewindow1.h"
 #include <QCloseEvent>
 
@@ -47,6 +49,20 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     Init();
+    QProcess process;
+    process.start("defaults read -g AppleInterfaceStyle");
+    process.waitForFinished(-1); // will wait forever until finished
+    QString stdout = process.readAllStandardOutput();
+    if(stdout != "Dark\n"){
+        QMessageBox msgBox;
+        msgBox.setText("Avertissement");
+        msgBox.setInformativeText("L'apparence du logiciel a été conçu pour être optimisé avec le thème noir de OSX Mojave");
+        msgBox.exec();
+        ui->label_15->setText("Trouver <b>B</b>");
+        ui->label_15->setText("Trouver <b>X</b>");
+        ui->label_15->setText("Trouver <b>Y</b>");
+        ui->label_22->setText("Trouver l'<b>intersection</b>");
+    }
 }
 
 void MainWindow::Init(){

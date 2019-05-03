@@ -290,7 +290,7 @@
                               <bool>true</bool>
                              </property>
                              <property name="text">
-                              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:13pt;&quot;&gt;Trouver &lt;/span&gt;&lt;span style=&quot; font-size:13pt; font-weight:600; color:#78ff23;&quot;&gt;l'intersection&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:13pt;&quot;&gt;Trouver l'&lt;/span&gt;&lt;span style=&quot; font-size:13pt; font-weight:600; color:#78ff23;&quot;&gt;intersection&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                              </property>
                             </widget>
                            </item>
