@@ -57,11 +57,10 @@ void MainWindow::Init(){
     ui->tab_4->setLayout(ui->gridLayout_5);
     ui->tab_2->setLayout(ui->gridLayout_3);
     ui->tab_3->setLayout(ui->gridLayout_4);
+    ui->tab_8->setLayout(ui->gridLayout_9);
     ui->tab_6->setLayout(ui->gridLayout_6);
-    //ui->tab_7->setLayout(ui->gridLayout_9);
     ui->tab_10->setLayout(ui->gridLayout_7);
     ui->tab_11->setLayout(ui->gridLayout_8);
-    //ui->tab_12->setLayout(ui->gridLayout_10);
     QLabel *author = new QLabel();
     author->setText("Auteur: Mohamed A. Laghrour || <b>Utilisation personelle</b>");
     statusBar()->addWidget(author);
@@ -107,28 +106,27 @@ void MainWindow::on_pushButton_2_clicked()
     res1 =(a*x) + b;
     }
     ui->Demarche_Edit->setHtml(
-                "<dl style=\"text-align:center\"><b>Demarche:</b>"
+                "<dl style=\"text-align:center\"><b>Démarche:</b>"
                 "<br>""<br>"
-                "Etape 1: <b>Substitution</b>"
+                "Étape 1: <b>Substitution</b>"
                 "<br>"
                 + ui->Demarche1_A->text() + "x + " + ui->Demarche1_B->text() + " = " + ui->Demarche2_A->text() + "x + " + ui->Demarche2_B->text() +
                 "<br>""<br>"
-                "Etape 2: <b>Isoler b et x</b> <br>"
+                "Étape 2: <b>Isoler b et x</b> <br>"
                 + ui->Demarche1_A->text() + "x <b style=\"color: red\">(-"+ ui->Demarche1_A->text() +")</b> + " + ui->Demarche1_B->text() + " = " + ui->Demarche2_A->text() + "x <b style=\"color: red\">(-"+ ui->Demarche1_A->text() +")</b> + " + ui->Demarche2_B->text()+
                 "<br>"
                 + ui->Demarche1_B->text() + " = " + QString::number(R1) + "x + " + ui->Demarche2_B->text() + ""
                 "<br>""<br>"
-                "Etape 3: <b>Isoler x</b><br>"+
+                "Étape 3: <b>Isoler x</b><br>"+
                 ui->Demarche1_B->text() + " <b style=\"color: red\">(-"+ui->Demarche2_B->text()+")</b> = " + QString::number(R1) + "x + " + ui->Demarche2_B->text() +" <b style=\"color: red\">(-"+ui->Demarche2_B->text()+")</b>" +
                 "<br>"+
                 QString::number(R) + " = " + QString::number(R1) + "x"
                 "<br>""<br>"
-                "Etape 4: <b>Trouver x</b><br>"+
+                "Étape 4: <b>Trouver x</b><br>"+
                 QString::number(R)+ " <b style=\"color: red\">(÷"+QString::number(R1)+"x)</b>" + " = " + QString::number(R1) + "x <b style=\"color: red\">(÷"+QString::number(R1)+"x)</b>" +
                 "<br>"+
                 QString::number(R3)+ " = x || "+ QString::number(res1)+" = y"
                 "</dl>");
-    //Graphique
     if(ui->checkBox->isChecked()){
         double lookedx = R3 - ui->lineEdit->text().toInt();
         double Forwardx = R3 + ui->lineEdit->text().toInt();
@@ -198,7 +196,6 @@ void MainWindow::GenerateChart(std::vector<Coords> coord1, std::vector<Coords> c
 
        QChartView *chartView = new QChartView(chart);
        chartView->setRenderHint(QPainter::Antialiasing);
-       //ui->gridChart->addWidget(chartView);
        window->setCentralWidget(chartView);
        window->setStyleSheet("background-color: transparent");
        window->resize(800,600);
@@ -241,10 +238,6 @@ void Calcul(Fonction f, QString arg1, QString arg2, QString arg3, QLineEdit * li
         }
         double y = arg1.toDouble();
         double res = 0;
-        /*
-         * 15 = 2*x + b
-         * 15/2 - b = x
-        */
         y /= a;
         y -= b;
         res = y;
@@ -261,10 +254,6 @@ void Calcul(Fonction f, QString arg1, QString arg2, QString arg3, QLineEdit * li
             return;
         }
         double res = 0;
-        /*
-         *15 = 2*5 + b
-         *15 - (2*5) = b
-         */
         y -= (x*a);
         res = y;
         result = QString::number(res);
@@ -280,9 +269,6 @@ void Calcul(Fonction f, QString arg1, QString arg2, QString arg3, QLineEdit * li
         }
         double b = arg3.toDouble();
         double res = 0;
-        /*
-         *y = a*x + b
-         */
         res =(a*x) + b;
         result = QString::number(res);
     }
