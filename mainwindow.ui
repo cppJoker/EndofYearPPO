@@ -77,7 +77,7 @@
                <item row="1" column="0">
                 <widget class="QTabWidget" name="tabWidget_5">
                  <property name="currentIndex">
-                  <number>1</number>
+                  <number>0</number>
                  </property>
                  <widget class="QWidget" name="tab_10">
                   <property name="sizePolicy">
@@ -201,21 +201,30 @@
            <x>0</x>
            <y>0</y>
            <width>861</width>
-           <height>411</height>
+           <height>631</height>
           </rect>
          </property>
          <layout class="QGridLayout" name="gridLayout_4">
           <item row="0" column="0">
            <widget class="QTabWidget" name="tabWidget_4">
+            <property name="currentIndex">
+             <number>0</number>
+            </property>
             <widget class="QWidget" name="tab_8">
              <attribute name="title">
-              <string>Tab 1</string>
+              <string>Relations et fonctions</string>
              </attribute>
-            </widget>
-            <widget class="QWidget" name="tab_9">
-             <attribute name="title">
-              <string>Tab 2</string>
-             </attribute>
+             <widget class="QWidget" name="gridLayoutWidget_9">
+              <property name="geometry">
+               <rect>
+                <x>19</x>
+                <y>9</y>
+                <width>521</width>
+                <height>571</height>
+               </rect>
+              </property>
+              <layout class="QGridLayout" name="gridLayout_9"/>
+             </widget>
             </widget>
            </widget>
           </item>
@@ -251,7 +260,7 @@
                 <x>20</x>
                 <y>10</y>
                 <width>461</width>
-                <height>477</height>
+                <height>489</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_5">
@@ -272,8 +281,16 @@
                           <layout class="QVBoxLayout" name="verticalLayout_14">
                            <item>
                             <widget class="QLabel" name="label_22">
+                             <property name="font">
+                              <font>
+                               <pointsize>18</pointsize>
+                              </font>
+                             </property>
+                             <property name="mouseTracking">
+                              <bool>true</bool>
+                             </property>
                              <property name="text">
-                              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Trouver &lt;/span&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;l'intersection&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:13pt;&quot;&gt;Trouver &lt;/span&gt;&lt;span style=&quot; font-size:13pt; font-weight:600; color:#78ff23;&quot;&gt;l'intersection&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                              </property>
                             </widget>
                            </item>
@@ -281,6 +298,18 @@
                             <layout class="QHBoxLayout" name="horizontalLayout_21">
                              <item>
                               <layout class="QVBoxLayout" name="verticalLayout_13">
+                               <item>
+                                <widget class="QLabel" name="label_23">
+                                 <property name="font">
+                                  <font>
+                                   <pointsize>11</pointsize>
+                                  </font>
+                                 </property>
+                                 <property name="text">
+                                  <string>Règle 1:</string>
+                                 </property>
+                                </widget>
+                               </item>
                                <item>
                                 <layout class="QHBoxLayout" name="horizontalLayout_17">
                                  <item>
@@ -328,6 +357,18 @@
                              </item>
                              <item>
                               <layout class="QVBoxLayout" name="verticalLayout_12">
+                               <item>
+                                <widget class="QLabel" name="label_24">
+                                 <property name="font">
+                                  <font>
+                                   <pointsize>11</pointsize>
+                                  </font>
+                                 </property>
+                                 <property name="text">
+                                  <string>Règle 2:</string>
+                                 </property>
+                                </widget>
+                               </item>
                                <item>
                                 <layout class="QHBoxLayout" name="horizontalLayout_20">
                                  <item>
@@ -380,6 +421,9 @@
                              <property name="text">
                               <string>Calculer</string>
                              </property>
+                             <property name="flat">
+                              <bool>false</bool>
+                             </property>
                             </widget>
                            </item>
                            <item>
@@ -399,7 +443,7 @@
                            <item>
                             <widget class="QLabel" name="label_20">
                              <property name="text">
-                              <string>Precision X:</string>
+                              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Précision X:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                              </property>
                             </widget>
                            </item>
@@ -413,7 +457,7 @@
                            <item>
                             <widget class="QLabel" name="label_21">
                              <property name="text">
-                              <string>Precision Y:</string>
+                              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Précision Y:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                              </property>
                             </widget>
                            </item>
@@ -470,8 +514,17 @@
                     <layout class="QVBoxLayout" name="verticalLayout_10">
                      <item>
                       <widget class="QLabel" name="label_15">
+                       <property name="sizePolicy">
+                        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                         <horstretch>0</horstretch>
+                         <verstretch>0</verstretch>
+                        </sizepolicy>
+                       </property>
                        <property name="text">
-                        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Trouver &lt;/span&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;B&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Trouver &lt;span style=&quot; font-weight:600; color:#78ff23;&quot;&gt;B&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                       </property>
+                       <property name="scaledContents">
+                        <bool>false</bool>
                        </property>
                       </widget>
                      </item>
@@ -534,7 +587,7 @@
                        <item>
                         <widget class="QLabel" name="label_12">
                          <property name="text">
-                          <string>B=</string>
+                          <string>B =</string>
                          </property>
                         </widget>
                        </item>
@@ -564,7 +617,7 @@
                      <item>
                       <widget class="QLabel" name="label_14">
                        <property name="text">
-                        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Trouver &lt;/span&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;X&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Trouver &lt;span style=&quot; font-weight:600; color:#78ff23;&quot;&gt;X&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                        </property>
                       </widget>
                      </item>
@@ -627,7 +680,7 @@
                        <item>
                         <widget class="QLabel" name="label_8">
                          <property name="text">
-                          <string>X=</string>
+                          <string>X =</string>
                          </property>
                         </widget>
                        </item>
@@ -657,7 +710,7 @@
                      <item>
                       <widget class="QLabel" name="label_13">
                        <property name="text">
-                        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Trouver &lt;/span&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Y&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Trouver &lt;span style=&quot; font-weight:600; color:#78ff23;&quot;&gt;Y&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                        </property>
                       </widget>
                      </item>
@@ -720,7 +773,7 @@
                        <item>
                         <widget class="QLabel" name="label_4">
                          <property name="text">
-                          <string>Y=</string>
+                          <string>Y =</string>
                          </property>
                         </widget>
                        </item>
