@@ -7,7 +7,7 @@ It contains:
  - X, Y and B resolver. ($y = xa + b$)
  - Graphical Charting with precision control
 
-| AppInfo               |  |                      
+| AppInfo               | Specifications|                      
 |----------------|-----------------------------|
 |App Language:        |French            |
 |Programming Language:          |C++            |
