@@ -78,7 +78,7 @@ void MainWindow::Init(){
     ui->tab_10->setLayout(ui->gridLayout_7);
     ui->tab_11->setLayout(ui->gridLayout_8);
     QLabel *author = new QLabel();
-    author->setText("<b>https://github.com/JokerCompiler/EndofYearPPO</b>");
+    author->setText("<b>https://github.com/cppJoker/EndofYearPPO</b>");
     statusBar()->addWidget(author);
     setFixedSize(size());
 }
