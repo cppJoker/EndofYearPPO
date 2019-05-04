@@ -4,7 +4,7 @@ EndOfYearPPO is a cross-platform application made with the Qt Framework to help 
 It contains: 
 
  - Intersection between two rules: with Step-By-Step solving
- - X, Y and B resolver. ($y = xa + b$)
+ - X, Y and B resolver.
  - Graphical Charting with precision control
 
 | AppInfo               | Specifications|                      
