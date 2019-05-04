@@ -1,7 +1,0 @@
-<RCC>
-    <qresource prefix="/new/prefix1">
-        <file>_pdp_sq_.jpg</file>
-        <file>Inequation.PNG</file>
-        <file>inequation.jpg</file>
-    </qresource>
-</RCC>
