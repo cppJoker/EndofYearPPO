@@ -23,7 +23,7 @@ public:
 private slots:
     void closeEvent (QCloseEvent *event);
     void on_pushButton_2_clicked();
-    void GenerateChart(std::vector<Coords> coord1, std::vector<Coords> coord2, double x_x);
+    void GenerateChart(std::vector<Coords> coord1, std::vector<Coords> coord2);
     void GenerateRule (QString a, QString b, QLineEdit * lineEdit);
     void on_TrouverB_X_textChanged(const QString &arg1);
 

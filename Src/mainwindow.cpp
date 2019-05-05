@@ -51,11 +51,14 @@ MainWindow::MainWindow(QWidget *parent) :
     Init();
     QProcess process;
     process.start("defaults read -g AppleInterfaceStyle");
-    process.waitForFinished(-1); // will wait forever until finished
+    process.waitForFinished(-1);
     QString stdout = process.readAllStandardOutput();
     if(stdout != "Dark\n"){
         QMessageBox msgBox;
+        msgBox.setIcon(QMessageBox::Information);
         msgBox.setText("Avertissement");
+        msgBox.setStandardButtons(QMessageBox::Ok);
+        msgBox.setDetailedText("Il se peut qu'il y est quelques problèmes sur le contraste de certain mots. Le programme reste néanmoins fonctionnel et lisable.");
         msgBox.setInformativeText("L'apparence du logiciel a été conçu pour être optimisé avec le thème noir de OSX Mojave");
         msgBox.exec();
         ui->label_15->setText("Trouver <b>B</b>");
@@ -103,6 +106,7 @@ void MainWindow::on_pushButton_2_clicked()
     if(doesHaveChar(SRegle1_A) || doesHaveChar(SRegle1_B) || doesHaveChar(SRegle2_A) || doesHaveChar(SRegle2_B)){
         return;
     }
+
     double Regle1_A = SRegle1_A.toDouble();
     double Regle1_B = SRegle1_B.toDouble();
     double Regle2_A = SRegle2_A.toDouble();
@@ -178,17 +182,18 @@ void MainWindow::on_pushButton_2_clicked()
 
         std::reverse(cord1.begin(), cord1.end());
         std::reverse(cord2.begin(), cord2.end());
-        GenerateChart(cord1,cord2, R3);
+        GenerateChart(cord1,cord2);
     }
 }
 
-void MainWindow::GenerateChart(std::vector<Coords> coord1, std::vector<Coords> coord2, double x_x){
-    QChart *chart = new QChart();
+void MainWindow::GenerateChart(std::vector<Coords> coord1, std::vector<Coords> coord2){
+       QChart *chart = new QChart();
        QValueAxis *axisX = new QValueAxis;
        axisX->setTickCount(ui->lineEdit->text().toInt());
        chart->addAxis(axisX, Qt::AlignBottom);
+
        QSplineSeries *series = new QSplineSeries;
-       for(auto i: coord1)
+       for(Coords i: coord1)
             series->append(i.x,i.y);
 
        series->setColor(Qt::blue);
@@ -202,7 +207,7 @@ void MainWindow::GenerateChart(std::vector<Coords> coord1, std::vector<Coords> c
        series->attachAxis(axisY);
 
        QSplineSeries *series2 = new QSplineSeries;
-       for(auto i: coord2)
+       for(Coords i: coord2)
             series2->append(i.x,i.y);
 
        series2->setName(ui->Demarche2_Regle->text().mid(7));
