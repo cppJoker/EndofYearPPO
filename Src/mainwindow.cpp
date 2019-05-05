@@ -78,7 +78,10 @@ void MainWindow::Init(){
     ui->tab_10->setLayout(ui->gridLayout_7);
     ui->tab_11->setLayout(ui->gridLayout_8);
     QLabel *author = new QLabel();
-    author->setText("<b>https://github.com/cppJoker/EndofYearPPO</b>");
+    author->setText("Relations et fonctions || <a href=\"https://github.com/cppJoker/EndofYearPPO\">Documentation et code source</a> || License: <a href=\"https://www.gnu.org/licenses/gpl-3.0.en.html\">GNU GPL v3 (open source)</a>");
+    author->setTextFormat(Qt::RichText);
+    author->setTextInteractionFlags(Qt::TextBrowserInteraction);
+    author->setOpenExternalLinks(true);
     statusBar()->addWidget(author);
     setFixedSize(size());
 }
