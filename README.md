@@ -12,7 +12,7 @@ It contains:
 |App Language:        |French            |
 |Programming Language:          |C++            |
 |Used framework          |Qt Framework|
-|Compatibility | Windows, OSX 10.14.x, Linux|
+|Compatibility | Windows, OSX 10.14.X, Linux|
 
 ### Files
 
