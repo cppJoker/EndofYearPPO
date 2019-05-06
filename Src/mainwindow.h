@@ -20,6 +20,8 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     void Init();
+    Exercise * exer;
+    void InitExercices();
     QMainWindow * window = new QMainWindow();
 private slots:
     void closeEvent (QCloseEvent *event);
@@ -67,6 +69,10 @@ private slots:
     void on_lineEdit_2_textChanged(const QString &arg1);
 
     void on_Demarche1_Regle_textChanged(const QString &arg1);
+
+    void on_Exer_Reset_clicked();
+
+    void on_Exer_NextBtn_clicked();
 
 private:
     Ui::MainWindow *ui;

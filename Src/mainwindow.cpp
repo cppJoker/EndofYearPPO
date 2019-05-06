@@ -16,6 +16,7 @@
 #include <QMessageBox>
 #include <QProcess>
 #include "imagewindow1.h"
+#include "exercise.h"
 #include <QCloseEvent>
 
 using namespace QtCharts;
@@ -70,6 +71,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
 void MainWindow::Init(){
     ui->checkBox->setChecked(false);
+    ui->Exer_Input->setVisible(false);
+    ui->Exer_QuestionNum->setVisible(false);
+    ui->Exer_Recherche->setVisible(false);
+    ui->Exer_Reset->setVisible(false);
     setWindowTitle("Secondaire 3: Relations et fonctions");
     ui->centralWidget->setLayout(ui->gridLayout);
     ui->tab->setLayout(ui->gridLayout_2);
@@ -88,6 +93,15 @@ void MainWindow::Init(){
     author->setOpenExternalLinks(true);
     statusBar()->addWidget(author);
     setFixedSize(size());
+    InitExercices();
+}
+
+void MainWindow::InitExercices(){
+    Question q1 = {"Hey","Ho","Hey","Ho"};
+    QVector<Question> as;
+    as.push_back(q1);
+    exer = new Exercise(as,ui->Exer_Input,ui->Exer_RichText,ui->Exer_QuestionNum,ui->Exer_Recherche,ui->Exer_NextBtn, ui->Exer_Reset);
+    exer->FirstQuestion();
 }
 
 MainWindow::~MainWindow()
@@ -420,4 +434,14 @@ void MainWindow::on_lineEdit_2_textChanged(const QString &arg1)
 void MainWindow::on_Demarche1_Regle_textChanged(const QString &arg1)
 {
 
+}
+
+void MainWindow::on_Exer_Reset_clicked()
+{
+    exer->Reset();
+}
+
+void MainWindow::on_Exer_NextBtn_clicked()
+{
+    exer->NextQuestion();
 }

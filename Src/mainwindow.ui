@@ -288,7 +288,7 @@
                    <item>
                     <widget class="QPushButton" name="Exer_NextBtn">
                      <property name="text">
-                      <string>Prochaine question</string>
+                      <string>NEW</string>
                      </property>
                     </widget>
                    </item>

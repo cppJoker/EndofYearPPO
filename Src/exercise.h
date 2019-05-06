@@ -8,19 +8,20 @@
 #include <QVector>
 #include <QLineEdit>
 #include <QTextEdit>
-
+struct Question{
+    QString htmlText;
+    QString Answer;
+    QString AnswerLabel;
+    QString Answer_SbS;
+};
 class Exercise{
 
 public:
-    struct Question{
-        QString htmlText;
-        QString Answer;
-        QString AnswerLabel;
-        QString Answer_SbS;
-    };
 
-    Exercise(QVector<Question> qrc, QLineEdit * Exer_Input, QTextEdit * Exer_RichText,
-    QLabel * Exer_QuestionNum, QLabel * Exer_Recherche, QPushButton * Exer_NextBtn){
+
+    Exercise(QVector<Question> qrc2, QLineEdit * Exer_Input, QTextEdit * Exer_RichText,
+    QLabel * Exer_QuestionNum, QLabel * Exer_Recherche, QPushButton * Exer_NextBtn, QPushButton * Exer_Reset){
+        QVector<Question> qrc = qrc2;
         _exercice.questions = qrc;
         _exercice.Length = qrc.size();
         _exercice.Level = 0;
@@ -29,6 +30,7 @@ public:
         this->Exer_QuestionNum = Exer_QuestionNum;
         this->Exer_Recherche = Exer_Recherche;
         this->Exer_NextBtn = Exer_NextBtn;
+        this->Exer_Reset = Exer_Reset;
     }
 
     void LoadContent(int flag = NEXT){
@@ -68,7 +70,7 @@ public:
             break;
         case END:
             {
-
+            Exer_RichText->setHtml("newQuestion.htmlText""");
             }
             break;
         }
@@ -104,6 +106,10 @@ public:
             return;
         }
         if(Exer_NextBtn->text() == "Commencer la série d'exercises!"){
+            Exer_Input->setVisible(true);
+            Exer_QuestionNum->setVisible(true);
+            Exer_Recherche->setVisible(true);
+            Exer_Reset->setVisible(true);
             _exercice.WhereAt = "Question " + QString::number(_exercice.Level+1) + "/" + QString::number(_exercice.Length);
             LoadContent();
             return;
@@ -126,6 +132,7 @@ private:
         btnState BtnState;
     };
     QPushButton * Exer_NextBtn;
+    QPushButton * Exer_Reset;
     QLineEdit * Exer_Input;
     QTextEdit * Exer_RichText;
     QLabel * Exer_QuestionNum;
