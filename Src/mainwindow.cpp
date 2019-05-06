@@ -18,8 +18,20 @@
 #include "imagewindow1.h"
 #include "exercise.h"
 #include <QCloseEvent>
+#include <QTime>
+#include <QPushButton>
+#include <QLineEdit>
 
 using namespace QtCharts;
+
+void delay( int millisecondsToWait )
+{
+    QTime dieTime = QTime::currentTime().addMSecs( millisecondsToWait );
+    while( QTime::currentTime() < dieTime )
+    {
+        QCoreApplication::processEvents( QEventLoop::AllEvents, 100 );
+    }
+}
 
 bool doesHaveChar(QString & str){
     for (int i = 0; i < str.length(); i++) {
@@ -49,8 +61,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    InitExercices();
-    Init();
     QProcess process;
     process.start("defaults read -g AppleInterfaceStyle");
     process.waitForFinished(-1);
@@ -68,14 +78,22 @@ MainWindow::MainWindow(QWidget *parent) :
         ui->label_15->setText("Trouver <b>Y</b>");
         ui->label_22->setText("Trouver l'<b>intersection</b>");
     }
+    delay(1);
+    Init();
 }
 
 void MainWindow::Init(){
+    ui->Exer_Input->setEnabled(false);
+    ui->Exer_QuestionNum->setVisible(false);
+    ui->Exer_Reset->setVisible(false);
+    ui->Exer_Recherche->setVisible(false);
+    delay(1);
     ui->checkBox->setChecked(false);
     ui->Exer_Input->setVisible(false);
     ui->Exer_QuestionNum->setVisible(false);
     ui->Exer_Recherche->setVisible(false);
     ui->Exer_Reset->setVisible(false);
+    delay(1);
     setWindowTitle("Secondaire 3: Relations et fonctions");
     ui->centralWidget->setLayout(ui->gridLayout);
     ui->tab->setLayout(ui->gridLayout_2);
@@ -86,6 +104,7 @@ void MainWindow::Init(){
     ui->tab_6->setLayout(ui->gridLayout_6);
     ui->tab_10->setLayout(ui->gridLayout_7);
     ui->tab_11->setLayout(ui->gridLayout_8);
+    delay(1);
     QLabel *author = new QLabel();
     author->setText("Relations et fonctions || <a href=\"https://github.com/cppJoker/EndofYearPPO\">Documentation et code source</a> || License: <a href=\"https://www.gnu.org/licenses/gpl-3.0.en.html\">GNU GPL v3 (open source)</a>");
     author->setTextFormat(Qt::RichText);
@@ -94,6 +113,8 @@ void MainWindow::Init(){
     author->setOpenExternalLinks(true);
     statusBar()->addWidget(author);
     setFixedSize(size());
+    delay(1);
+    InitExercices();
 }
 
 void MainWindow::InitExercices(){

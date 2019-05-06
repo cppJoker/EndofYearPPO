@@ -43,12 +43,15 @@ public:
         switch (flag) {
         case REFRESH:
             {
+            Exer_Input->setVisible(true);
+            Exer_QuestionNum->setVisible(true);
+            Exer_Recherche->setVisible(true);
+            Exer_Reset->setVisible(true);
                 Exer_NextBtn->setText(BEGINOFEXER);
             }
             break;
         case CORRECT:
             {
-                Exer_Input->setDisabled(true);
                 Exer_RichText->setText(Exer_RichText->toHtml() + "\nBonne réponse!\n ");
                 if(_exercice.Level >= (_exercice.Length-1) ){
                     Exer_NextBtn->setText(ENDOFEXER);
@@ -59,7 +62,6 @@ public:
         case FALSE:
             {
 
-                Exer_Input->setDisabled(true);
                 Exer_RichText->setText(Exer_RichText->toHtml() + "\nMauvaise réponse!\n " + _exercice.questions[_exercice.Level].Answer_SbS);
                 if(_exercice.Level >= (_exercice.Length-1)){
                     Exer_NextBtn->setText(ENDOFEXER);
@@ -69,6 +71,10 @@ public:
             break;
         case NEXT:
             {
+            Exer_Input->setVisible(true);
+            Exer_QuestionNum->setVisible(true);
+            Exer_Recherche->setVisible(true);
+            Exer_Reset->setVisible(true);
             Question newQuestion = _exercice.questions[_exercice.Level];
             Exer_RichText->setHtml(newQuestion.htmlText);
             Exer_Recherche->setText(newQuestion.AnswerLabel);
@@ -91,7 +97,9 @@ public:
     }
     void CheckAnswer(){
         Exer_Input->setVisible(false);
-        Exer_Input->setEnabled(false);
+        Exer_QuestionNum->setVisible(false);
+        Exer_Recherche->setVisible(false);
+        Exer_Reset->setVisible(false);
         if(Exer_Input->text() != _exercice.questions[_exercice.Level].Answer){
             LoadContent(FALSE);
         }else{
@@ -103,6 +111,10 @@ public:
         return _exercice.BtnState;
     }
     void FirstQuestion(){
+        Exer_Input->setVisible(false);
+        Exer_QuestionNum->setVisible(false);
+        Exer_Recherche->setVisible(false);
+        Exer_Reset->setVisible(false);
         LoadContent(REFRESH);
     }
     void NextQuestion(){
@@ -129,6 +141,7 @@ public:
             return;
         }
         if(Exer_NextBtn->text() == BEGINOFEXER){
+            Exer_Input->setEnabled(true);
             Exer_Input->setVisible(true);
             Exer_QuestionNum->setVisible(true);
             Exer_Recherche->setVisible(true);
