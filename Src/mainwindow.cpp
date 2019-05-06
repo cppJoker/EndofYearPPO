@@ -83,15 +83,6 @@ MainWindow::MainWindow(QWidget *parent) :
 }
 
 void MainWindow::Init(){
-    {
-        QMessageBox msgBox;
-        msgBox.setIcon(QMessageBox::Information);
-        msgBox.setText(QString::number(ui->Exer_Input->isEnabled()));
-        msgBox.setStandardButtons(QMessageBox::Ok);
-        msgBox.setDetailedText("Il se peut qu'il y est quelques problèmes sur le contraste de certain mots. Le programme reste néanmoins fonctionnel et lisable.");
-        msgBox.setInformativeText("L'apparence du logiciel a été conçu pour être optimisé avec le thème noir de OSX Mojave");
-        msgBox.exec();
-    }
     ui->Exer_Input->setEnabled(false);
     ui->Exer_QuestionNum->setEnabled(false);
     ui->Exer_Reset->setEnabled(false);

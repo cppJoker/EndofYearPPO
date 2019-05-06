@@ -10,7 +10,7 @@
 #include <QTextEdit>
 #include <QTime>
 #include <QCoreApplication>
-#define BEGINOFEXER ("Commencer la série d'exercises!")
+#define BEGINOFEXER ("Commencer la série d'exercises")
 #define ENDOFEXER ("Fin de la série")
 #define NEXTOFEXER ("Prochaine question")
 #define CHECKOFEXER ("Valider")
