@@ -24,6 +24,14 @@
 
 using namespace QtCharts;
 
+void delay( int millisecondsToWait )
+{
+    QTime dieTime = QTime::currentTime().addMSecs( millisecondsToWait );
+    while( QTime::currentTime() < dieTime )
+    {
+        QCoreApplication::processEvents( QEventLoop::AllEvents, 100 );
+    }
+}
 
 bool doesHaveChar(QString & str){
     for (int i = 0; i < str.length(); i++) {

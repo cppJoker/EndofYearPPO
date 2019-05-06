@@ -16,14 +16,6 @@
 #define CHECKOFEXER ("Valider")
 #define ZEROEXER ("Recommencer")
 
-void delay( int millisecondsToWait )
-{
-    QTime dieTime = QTime::currentTime().addMSecs( millisecondsToWait );
-    while( QTime::currentTime() < dieTime )
-    {
-        QCoreApplication::processEvents( QEventLoop::AllEvents, 100 );
-    }
-}
 
 struct Question{
     QString htmlText;
@@ -127,22 +119,22 @@ public:
     }
     void NextQuestion(){
         if(Exer_NextBtn->text() == CHECKOFEXER){
-            delay(1);
+            delay2(20);
             CheckAnswer();
             return;
         }
         if(Exer_NextBtn->text() == ZEROEXER){
-            delay(1);
+            delay2(20);
             Reset();
             return;
         }
         if(Exer_NextBtn->text() == ENDOFEXER){
-            delay(1);
+            delay2(20);
             LoadContent(END);
             return;
         }
         if(Exer_NextBtn->text() == NEXTOFEXER){
-            delay(1);
+            delay2(20);
                 _exercice.Level = _exercice.Level + 1;
                 if(_exercice.Level == _exercice.Length){
                     Exer_NextBtn->setText(ENDOFEXER);
@@ -153,7 +145,7 @@ public:
             return;
         }
         if(Exer_NextBtn->text() == BEGINOFEXER){
-            delay(1);
+            delay2(20);
             Exer_Input->setEnabled(true);
             Exer_QuestionNum->setEnabled(true);
             Exer_Recherche->setEnabled(true);
@@ -176,6 +168,14 @@ public:
     }
 
 private:
+    void delay2( int millisecondsToWait )
+    {
+        QTime dieTime = QTime::currentTime().addMSecs( millisecondsToWait );
+        while( QTime::currentTime() < dieTime )
+        {
+            QCoreApplication::processEvents( QEventLoop::AllEvents, 100 );
+        }
+    }
     enum btnState {NEW, CORRECT, FALSE, NEXT,END, REFRESH};
     struct Exer{
         QVector<Question> questions;
