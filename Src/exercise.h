@@ -61,8 +61,10 @@ public:
                 Exer_RichText->setText(Exer_RichText->toHtml() + "\nBonne réponse!\n ");
                 if(_exercice.Level >= (_exercice.Length-1) ){
                     Exer_NextBtn->setText(ENDOFEXER);
-                }else
+                }else{
+                ChangeInputState(false);
                 Exer_NextBtn->setText(NEXTOFEXER);
+                }
             }
             break;
         case FALSE:
@@ -71,8 +73,10 @@ public:
                 Exer_RichText->setText(Exer_RichText->toHtml() + "\nMauvaise réponse!\n " + _exercice.questions[_exercice.Level].Answer_SbS);
                 if(_exercice.Level >= (_exercice.Length-1)){
                     Exer_NextBtn->setText(ENDOFEXER);
-                }else
+                }else{
+                ChangeInputState(false);
                 Exer_NextBtn->setText(NEXTOFEXER);
+                }
             }
             break;
         case NEXT:
