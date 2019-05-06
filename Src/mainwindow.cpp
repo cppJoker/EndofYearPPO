@@ -83,7 +83,7 @@ MainWindow::MainWindow(QWidget *parent) :
 }
 
 void MainWindow::Init(){
-    ui->Exer_Input->setEnabled(false);
+    ui->Exer_Input->setVisible(false);
     ui->Exer_QuestionNum->setVisible(false);
     ui->Exer_Reset->setVisible(false);
     ui->Exer_Recherche->setVisible(false);

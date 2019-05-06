@@ -141,7 +141,6 @@ public:
             return;
         }
         if(Exer_NextBtn->text() == BEGINOFEXER){
-            Exer_Input->setEnabled(true);
             Exer_Input->setVisible(true);
             Exer_QuestionNum->setVisible(true);
             Exer_Recherche->setVisible(true);
