@@ -33,11 +33,6 @@ public:
 
     void LoadContent(int flag = NEXT){
         switch (flag) {
-        case NEW:
-            {
-
-            }
-            break;
         case REFRESH:
             {
                 Exer_NextBtn->setText("Commencer la série d'exercises!");
@@ -47,7 +42,7 @@ public:
             {
 
             if(_exercice.Level == _exercice.questions.length()){
-                LoadContent(END);
+                Exer_NextBtn->setText("Fin de la série");
             }else
                 Exer_RichText->setText(Exer_RichText->toHtml() + "\nBonne réponse!\n ");
                 Exer_NextBtn->setText("Prochaine question");
@@ -56,7 +51,7 @@ public:
         case FALSE:
             {
             if(_exercice.Level == _exercice.questions.length()){
-                LoadContent(END);
+                Exer_NextBtn->setText("Fin de la série");
             }else
                 Exer_RichText->setText(Exer_RichText->toHtml() + "\nMauvaise réponse!\n " + _exercice.questions[_exercice.Level].Answer_SbS);
                 Exer_NextBtn->setText("Prochaine question");
@@ -98,7 +93,7 @@ public:
             CheckAnswer();
             return;
         }
-        if(_exercice.Level == _exercice.questions.length()){
+        if(Exer_NextBtn->text() == "Fin de la série"){
             LoadContent(END);
             return;
         }
@@ -106,15 +101,19 @@ public:
             _exercice.Level++;
             _exercice.WhereAt = "Question " + QString::number(_exercice.Level+1) + "/" + QString::number(_exercice.Length);
             LoadContent();
+            return;
         }
         if(Exer_NextBtn->text() == "Commencer la série d'exercises!"){
             _exercice.WhereAt = "Question " + QString::number(_exercice.Level+1) + "/" + QString::number(_exercice.Length);
             LoadContent();
+            return;
         }
     }
 
-    static void Reset(Exercise* exer){
-        delete exer;
+    void Reset(){
+        _exercice.Level = 0;
+        _exercice.WhereAt = "Question " + QString::number(_exercice.Level+1) + "/" + QString::number(_exercice.Length);
+        LoadContent(REFRESH);
     }
 
 private:
