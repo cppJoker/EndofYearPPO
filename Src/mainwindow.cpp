@@ -84,6 +84,7 @@ void MainWindow::Init(){
     author->setText("Relations et fonctions || <a href=\"https://github.com/cppJoker/EndofYearPPO\">Documentation et code source</a> || License: <a href=\"https://www.gnu.org/licenses/gpl-3.0.en.html\">GNU GPL v3 (open source)</a>");
     author->setTextFormat(Qt::RichText);
     author->setTextInteractionFlags(Qt::TextBrowserInteraction);
+    author->setFocusPolicy(Qt::FocusPolicy::NoFocus);
     author->setOpenExternalLinks(true);
     statusBar()->addWidget(author);
     setFixedSize(size());
