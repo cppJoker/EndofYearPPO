@@ -24,14 +24,6 @@
 
 using namespace QtCharts;
 
-void delay( int millisecondsToWait )
-{
-    QTime dieTime = QTime::currentTime().addMSecs( millisecondsToWait );
-    while( QTime::currentTime() < dieTime )
-    {
-        QCoreApplication::processEvents( QEventLoop::AllEvents, 100 );
-    }
-}
 
 bool doesHaveChar(QString & str){
     for (int i = 0; i < str.length(); i++) {
@@ -83,10 +75,19 @@ MainWindow::MainWindow(QWidget *parent) :
 }
 
 void MainWindow::Init(){
-    ui->Exer_Input->setVisible(false);
-    ui->Exer_QuestionNum->setVisible(false);
-    ui->Exer_Reset->setVisible(false);
-    ui->Exer_Recherche->setVisible(false);
+    {
+        QMessageBox msgBox;
+        msgBox.setIcon(QMessageBox::Information);
+        msgBox.setText(QString::number(ui->Exer_Input->isEnabled()));
+        msgBox.setStandardButtons(QMessageBox::Ok);
+        msgBox.setDetailedText("Il se peut qu'il y est quelques problèmes sur le contraste de certain mots. Le programme reste néanmoins fonctionnel et lisable.");
+        msgBox.setInformativeText("L'apparence du logiciel a été conçu pour être optimisé avec le thème noir de OSX Mojave");
+        msgBox.exec();
+    }
+    ui->Exer_Input->setEnabled(false);
+    ui->Exer_QuestionNum->setEnabled(false);
+    ui->Exer_Reset->setEnabled(false);
+    ui->Exer_Recherche->setEnabled(false);
     delay(1);
     ui->checkBox->setChecked(false);
     ui->Exer_Input->setVisible(false);

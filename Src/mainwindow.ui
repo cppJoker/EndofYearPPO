@@ -248,6 +248,9 @@
                     <layout class="QHBoxLayout" name="horizontalLayout_22">
                      <item>
                       <widget class="QPushButton" name="Exer_Reset">
+                       <property name="enabled">
+                        <bool>true</bool>
+                       </property>
                        <property name="text">
                         <string>Reset</string>
                        </property>
@@ -257,6 +260,9 @@
                    </item>
                    <item>
                     <widget class="QLabel" name="Exer_QuestionNum">
+                     <property name="enabled">
+                      <bool>true</bool>
+                     </property>
                      <property name="text">
                       <string>Question 1/?</string>
                      </property>
@@ -277,13 +283,23 @@
                    </item>
                    <item>
                     <widget class="QLabel" name="Exer_Recherche">
+                     <property name="enabled">
+                      <bool>true</bool>
+                     </property>
                      <property name="text">
                       <string>Réponse:</string>
                      </property>
                     </widget>
                    </item>
                    <item>
-                    <widget class="QLineEdit" name="Exer_Input"/>
+                    <widget class="QLineEdit" name="Exer_Input">
+                     <property name="enabled">
+                      <bool>true</bool>
+                     </property>
+                     <property name="readOnly">
+                      <bool>false</bool>
+                     </property>
+                    </widget>
                    </item>
                    <item>
                     <widget class="QPushButton" name="Exer_NextBtn">
