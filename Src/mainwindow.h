@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include "calculator.h"
 #include <QLineEdit>
+#include "exercise.h"
 #include <QCloseEvent>
 #include "imagewindow1.h"
 
