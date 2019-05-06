@@ -41,20 +41,23 @@ public:
         this->Exer_NextBtn = Exer_NextBtn;
         this->Exer_Reset = Exer_Reset;
     }
-
+    void ChangeInputState(bool state){
+        Exer_Input->setEnabled(state);
+        Exer_QuestionNum->setEnabled(state);
+        Exer_Recherche->setEnabled(state);
+        Exer_Reset->setEnabled(state);
+    }
     void LoadContent(int flag = NEXT){
         switch (flag) {
         case REFRESH:
             {
-            Exer_Input->setEnabled(true);
-            Exer_QuestionNum->setEnabled(true);
-            Exer_Recherche->setEnabled(true);
-            Exer_Reset->setEnabled(true);
-                Exer_NextBtn->setText(BEGINOFEXER);
+            ChangeInputState(false);
+            Exer_NextBtn->setText(BEGINOFEXER);
             }
             break;
         case CORRECT:
             {
+                ChangeInputState(true);
                 Exer_RichText->setText(Exer_RichText->toHtml() + "\nBonne réponse!\n ");
                 if(_exercice.Level >= (_exercice.Length-1) ){
                     Exer_NextBtn->setText(ENDOFEXER);
@@ -64,7 +67,7 @@ public:
             break;
         case FALSE:
             {
-
+                ChangeInputState(true);
                 Exer_RichText->setText(Exer_RichText->toHtml() + "\nMauvaise réponse!\n " + _exercice.questions[_exercice.Level].Answer_SbS);
                 if(_exercice.Level >= (_exercice.Length-1)){
                     Exer_NextBtn->setText(ENDOFEXER);
@@ -74,12 +77,9 @@ public:
             break;
         case NEXT:
             {
-            Exer_Input->setEnabled(true);
-            Exer_QuestionNum->setEnabled(true);
-            Exer_Recherche->setEnabled(true);
-            Exer_Reset->setEnabled(true);
-
+            ChangeInputState(true);
             Question newQuestion = _exercice.questions[_exercice.Level];
+            Exer_Input->setText("");
             Exer_RichText->setHtml(newQuestion.htmlText);
             Exer_Recherche->setText(newQuestion.AnswerLabel);
             Exer_QuestionNum->setText(_exercice.WhereAt);
@@ -88,10 +88,7 @@ public:
             break;
         case END:
             {
-            Exer_Input->setVisible(false);
-            Exer_QuestionNum->setVisible(false);
-            Exer_Recherche->setVisible(false);
-            Exer_Reset->setVisible(false);
+            ChangeInputState(false);
             Exer_RichText->setHtml("newQuestion.htmlText""");
             Exer_NextBtn->setText(ZEROEXER);
             }
@@ -100,10 +97,6 @@ public:
 
     }
     void CheckAnswer(){
-        Exer_Input->setEnabled(false);
-        Exer_QuestionNum->setEnabled(false);
-        Exer_Recherche->setEnabled(false);
-        Exer_Reset->setEnabled(false);
         if(Exer_Input->text() != _exercice.questions[_exercice.Level].Answer){
             LoadContent(FALSE);
         }else{
@@ -141,15 +134,13 @@ public:
                     return;
                 }
                 _exercice.WhereAt = "Question " + QString::number(_exercice.Level+1) + "/" + QString::number(_exercice.Length);
+                ChangeInputState(true);
                 LoadContent();
             return;
         }
         if(Exer_NextBtn->text() == BEGINOFEXER){
             delay2(20);
-            Exer_Input->setEnabled(true);
-            Exer_QuestionNum->setEnabled(true);
-            Exer_Recherche->setEnabled(true);
-            Exer_Reset->setEnabled(true);
+            ChangeInputState(true);
             _exercice.WhereAt = "Question " + QString::number(_exercice.Level+1) + "/" + QString::number(_exercice.Length);
             LoadContent();
             return;
@@ -157,12 +148,10 @@ public:
     }
 
     void Reset(){
+        Exer_Input->setText("");
         _exercice.Level = 0;
         _exercice.WhereAt = "Question " + QString::number(_exercice.Level+1) + "/" + QString::number(_exercice.Length);
-        Exer_Input->setVisible(false);
-        Exer_QuestionNum->setVisible(false);
-        Exer_Recherche->setVisible(false);
-        Exer_Reset->setVisible(false);
+        ChangeInputState(false);
         Exercise(_exercice.questions,Exer_Input,Exer_RichText,Exer_QuestionNum,Exer_Recherche, Exer_NextBtn, Exer_Reset);
         LoadContent(REFRESH);
     }

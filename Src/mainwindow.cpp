@@ -98,10 +98,6 @@ void MainWindow::Init(){
     ui->Exer_Recherche->setEnabled(false);
     delay(1);
     ui->checkBox->setChecked(false);
-    ui->Exer_Input->setVisible(false);
-    ui->Exer_QuestionNum->setVisible(false);
-    ui->Exer_Recherche->setVisible(false);
-    ui->Exer_Reset->setVisible(false);
     delay(1);
     setWindowTitle("Secondaire 3: Relations et fonctions");
     ui->centralWidget->setLayout(ui->gridLayout);
