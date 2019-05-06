@@ -119,6 +119,11 @@ public:
     void Reset(){
         _exercice.Level = 0;
         _exercice.WhereAt = "Question " + QString::number(_exercice.Level+1) + "/" + QString::number(_exercice.Length);
+        Exer_Input->setVisible(false);
+        Exer_QuestionNum->setVisible(false);
+        Exer_Recherche->setVisible(false);
+        Exer_Reset->setVisible(false);
+        Exercise(_exercice.questions,Exer_Input,Exer_RichText,Exer_QuestionNum,Exer_Recherche, Exer_NextBtn, Exer_Reset);
         LoadContent(REFRESH);
     }
 
