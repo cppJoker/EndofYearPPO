@@ -49,6 +49,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    InitExercices();
     Init();
     QProcess process;
     process.start("defaults read -g AppleInterfaceStyle");
@@ -93,13 +94,14 @@ void MainWindow::Init(){
     author->setOpenExternalLinks(true);
     statusBar()->addWidget(author);
     setFixedSize(size());
-    InitExercices();
 }
 
 void MainWindow::InitExercices(){
     Question q1 = {"Hey","Ho","Hey","Ho"};
+    Question q2 = {"Hey","Ho","Hey","Ho"};
     QVector<Question> as;
     as.push_back(q1);
+    as.push_back(q2);
     exer = new Exercise(as,ui->Exer_Input,ui->Exer_RichText,ui->Exer_QuestionNum,ui->Exer_Recherche,ui->Exer_NextBtn, ui->Exer_Reset);
     exer->FirstQuestion();
 }

@@ -8,6 +8,12 @@
 #include <QVector>
 #include <QLineEdit>
 #include <QTextEdit>
+#define BEGINOFEXER ("Commencer la série d'exercises!")
+#define ENDOFEXER ("Fin de la série")
+#define NEXTOFEXER ("Prochaine question")
+#define CHECKOFEXER ("Valider")
+#define ZEROEXER ("Recommencer")
+
 struct Question{
     QString htmlText;
     QString Answer;
@@ -23,7 +29,7 @@ public:
     QLabel * Exer_QuestionNum, QLabel * Exer_Recherche, QPushButton * Exer_NextBtn, QPushButton * Exer_Reset){
         QVector<Question> qrc = qrc2;
         _exercice.questions = qrc;
-        _exercice.Length = qrc.size();
+        _exercice.Length = qrc.length();
         _exercice.Level = 0;
         this->Exer_Input = Exer_Input;
         this->Exer_RichText = Exer_RichText;
@@ -37,26 +43,28 @@ public:
         switch (flag) {
         case REFRESH:
             {
-                Exer_NextBtn->setText("Commencer la série d'exercises!");
+                Exer_NextBtn->setText(BEGINOFEXER);
             }
             break;
         case CORRECT:
             {
-
-            if(_exercice.Level == _exercice.questions.length()){
-                Exer_NextBtn->setText("Fin de la série");
-            }else
+                Exer_Input->setDisabled(true);
                 Exer_RichText->setText(Exer_RichText->toHtml() + "\nBonne réponse!\n ");
-                Exer_NextBtn->setText("Prochaine question");
+                if(_exercice.Level >= (_exercice.Length-1) ){
+                    Exer_NextBtn->setText(ENDOFEXER);
+                }else
+                Exer_NextBtn->setText(NEXTOFEXER);
             }
             break;
         case FALSE:
             {
-            if(_exercice.Level == _exercice.questions.length()){
-                Exer_NextBtn->setText("Fin de la série");
-            }else
+
+                Exer_Input->setDisabled(true);
                 Exer_RichText->setText(Exer_RichText->toHtml() + "\nMauvaise réponse!\n " + _exercice.questions[_exercice.Level].Answer_SbS);
-                Exer_NextBtn->setText("Prochaine question");
+                if(_exercice.Level >= (_exercice.Length-1)){
+                    Exer_NextBtn->setText(ENDOFEXER);
+                }else
+                Exer_NextBtn->setText(NEXTOFEXER);
             }
             break;
         case NEXT:
@@ -65,18 +73,25 @@ public:
             Exer_RichText->setHtml(newQuestion.htmlText);
             Exer_Recherche->setText(newQuestion.AnswerLabel);
             Exer_QuestionNum->setText(_exercice.WhereAt);
-            Exer_NextBtn->setText("Valider");
+            Exer_NextBtn->setText(CHECKOFEXER);
             }
             break;
         case END:
             {
+            Exer_Input->setVisible(false);
+            Exer_QuestionNum->setVisible(false);
+            Exer_Recherche->setVisible(false);
+            Exer_Reset->setVisible(false);
             Exer_RichText->setHtml("newQuestion.htmlText""");
+            Exer_NextBtn->setText(ZEROEXER);
             }
             break;
         }
 
     }
     void CheckAnswer(){
+        Exer_Input->setVisible(false);
+        Exer_Input->setEnabled(false);
         if(Exer_Input->text() != _exercice.questions[_exercice.Level].Answer){
             LoadContent(FALSE);
         }else{
@@ -91,21 +106,29 @@ public:
         LoadContent(REFRESH);
     }
     void NextQuestion(){
-        if(Exer_NextBtn->text() == "Valider"){
+        if(Exer_NextBtn->text() == CHECKOFEXER){
             CheckAnswer();
             return;
         }
-        if(Exer_NextBtn->text() == "Fin de la série"){
+        if(Exer_NextBtn->text() == ZEROEXER){
+            Reset();
+            return;
+        }
+        if(Exer_NextBtn->text() == ENDOFEXER){
             LoadContent(END);
             return;
         }
-        if(Exer_NextBtn->text() == "Prochaine question"){
-            _exercice.Level++;
-            _exercice.WhereAt = "Question " + QString::number(_exercice.Level+1) + "/" + QString::number(_exercice.Length);
-            LoadContent();
+        if(Exer_NextBtn->text() == NEXTOFEXER){
+                _exercice.Level = _exercice.Level + 1;
+                if(_exercice.Level == _exercice.Length){
+                    Exer_NextBtn->setText(ENDOFEXER);
+                    return;
+                }
+                _exercice.WhereAt = "Question " + QString::number(_exercice.Level+1) + "/" + QString::number(_exercice.Length);
+                LoadContent();
             return;
         }
-        if(Exer_NextBtn->text() == "Commencer la série d'exercises!"){
+        if(Exer_NextBtn->text() == BEGINOFEXER){
             Exer_Input->setVisible(true);
             Exer_QuestionNum->setVisible(true);
             Exer_Recherche->setVisible(true);
