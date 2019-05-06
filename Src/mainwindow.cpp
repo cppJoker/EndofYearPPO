@@ -16,9 +16,22 @@
 #include <QMessageBox>
 #include <QProcess>
 #include "imagewindow1.h"
+#include "exercise.h"
 #include <QCloseEvent>
+#include <QTime>
+#include <QPushButton>
+#include <QLineEdit>
 
 using namespace QtCharts;
+
+void delay( int millisecondsToWait )
+{
+    QTime dieTime = QTime::currentTime().addMSecs( millisecondsToWait );
+    while( QTime::currentTime() < dieTime )
+    {
+        QCoreApplication::processEvents( QEventLoop::AllEvents, 100 );
+    }
+}
 
 bool doesHaveChar(QString & str){
     for (int i = 0; i < str.length(); i++) {
@@ -48,14 +61,16 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    Init();
     QProcess process;
     process.start("defaults read -g AppleInterfaceStyle");
-    process.waitForFinished(-1); // will wait forever until finished
+    process.waitForFinished(-1);
     QString stdout = process.readAllStandardOutput();
     if(stdout != "Dark\n"){
         QMessageBox msgBox;
+        msgBox.setIcon(QMessageBox::Information);
         msgBox.setText("Avertissement");
+        msgBox.setStandardButtons(QMessageBox::Ok);
+        msgBox.setDetailedText("Il se peut qu'il y est quelques problèmes sur le contraste de certain mots. Le programme reste néanmoins fonctionnel et lisable.");
         msgBox.setInformativeText("L'apparence du logiciel a été conçu pour être optimisé avec le thème noir de OSX Mojave");
         msgBox.exec();
         ui->label_15->setText("Trouver <b>B</b>");
@@ -63,10 +78,27 @@ MainWindow::MainWindow(QWidget *parent) :
         ui->label_15->setText("Trouver <b>Y</b>");
         ui->label_22->setText("Trouver l'<b>intersection</b>");
     }
+    delay(1);
+    Init();
 }
 
 void MainWindow::Init(){
+    {
+        QMessageBox msgBox;
+        msgBox.setIcon(QMessageBox::Information);
+        msgBox.setText(QString::number(ui->Exer_Input->isEnabled()));
+        msgBox.setStandardButtons(QMessageBox::Ok);
+        msgBox.setDetailedText("Il se peut qu'il y est quelques problèmes sur le contraste de certain mots. Le programme reste néanmoins fonctionnel et lisable.");
+        msgBox.setInformativeText("L'apparence du logiciel a été conçu pour être optimisé avec le thème noir de OSX Mojave");
+        msgBox.exec();
+    }
+    ui->Exer_Input->setEnabled(false);
+    ui->Exer_QuestionNum->setEnabled(false);
+    ui->Exer_Reset->setEnabled(false);
+    ui->Exer_Recherche->setEnabled(false);
+    delay(1);
     ui->checkBox->setChecked(false);
+    delay(1);
     setWindowTitle("Secondaire 3: Relations et fonctions");
     ui->centralWidget->setLayout(ui->gridLayout);
     ui->tab->setLayout(ui->gridLayout_2);
@@ -77,13 +109,27 @@ void MainWindow::Init(){
     ui->tab_6->setLayout(ui->gridLayout_6);
     ui->tab_10->setLayout(ui->gridLayout_7);
     ui->tab_11->setLayout(ui->gridLayout_8);
+    delay(1);
     QLabel *author = new QLabel();
     author->setText("Relations et fonctions || <a href=\"https://github.com/cppJoker/EndofYearPPO\">Documentation et code source</a> || License: <a href=\"https://www.gnu.org/licenses/gpl-3.0.en.html\">GNU GPL v3 (open source)</a>");
     author->setTextFormat(Qt::RichText);
     author->setTextInteractionFlags(Qt::TextBrowserInteraction);
+    author->setFocusPolicy(Qt::FocusPolicy::NoFocus);
     author->setOpenExternalLinks(true);
     statusBar()->addWidget(author);
     setFixedSize(size());
+    delay(1);
+    InitExercices();
+}
+
+void MainWindow::InitExercices(){
+    Question q1 = {"Hey","Ho","Hey","Ho"};
+    Question q2 = {"Hey","Ho","Hey","Ho"};
+    QVector<Question> as;
+    as.push_back(q1);
+    as.push_back(q2);
+    exer = new Exercise(as,ui->Exer_Input,ui->Exer_RichText,ui->Exer_QuestionNum,ui->Exer_Recherche,ui->Exer_NextBtn, ui->Exer_Reset);
+    exer->FirstQuestion();
 }
 
 MainWindow::~MainWindow()
@@ -103,6 +149,7 @@ void MainWindow::on_pushButton_2_clicked()
     if(doesHaveChar(SRegle1_A) || doesHaveChar(SRegle1_B) || doesHaveChar(SRegle2_A) || doesHaveChar(SRegle2_B)){
         return;
     }
+
     double Regle1_A = SRegle1_A.toDouble();
     double Regle1_B = SRegle1_B.toDouble();
     double Regle2_A = SRegle2_A.toDouble();
@@ -178,17 +225,18 @@ void MainWindow::on_pushButton_2_clicked()
 
         std::reverse(cord1.begin(), cord1.end());
         std::reverse(cord2.begin(), cord2.end());
-        GenerateChart(cord1,cord2, R3);
+        GenerateChart(cord1,cord2);
     }
 }
 
-void MainWindow::GenerateChart(std::vector<Coords> coord1, std::vector<Coords> coord2, double x_x){
-    QChart *chart = new QChart();
+void MainWindow::GenerateChart(std::vector<Coords> coord1, std::vector<Coords> coord2){
+       QChart *chart = new QChart();
        QValueAxis *axisX = new QValueAxis;
        axisX->setTickCount(ui->lineEdit->text().toInt());
        chart->addAxis(axisX, Qt::AlignBottom);
+
        QSplineSeries *series = new QSplineSeries;
-       for(auto i: coord1)
+       for(Coords i: coord1)
             series->append(i.x,i.y);
 
        series->setColor(Qt::blue);
@@ -202,7 +250,7 @@ void MainWindow::GenerateChart(std::vector<Coords> coord1, std::vector<Coords> c
        series->attachAxis(axisY);
 
        QSplineSeries *series2 = new QSplineSeries;
-       for(auto i: coord2)
+       for(Coords i: coord2)
             series2->append(i.x,i.y);
 
        series2->setName(ui->Demarche2_Regle->text().mid(7));
@@ -414,4 +462,14 @@ void MainWindow::on_lineEdit_2_textChanged(const QString &arg1)
 void MainWindow::on_Demarche1_Regle_textChanged(const QString &arg1)
 {
 
+}
+
+void MainWindow::on_Exer_Reset_clicked()
+{
+    exer->Reset();
+}
+
+void MainWindow::on_Exer_NextBtn_clicked()
+{
+    exer->NextQuestion();
 }

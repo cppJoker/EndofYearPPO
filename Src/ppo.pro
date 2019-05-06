@@ -31,6 +31,7 @@ SOURCES += \
     imagewindow1.cpp
 
 HEADERS += \
+    exercise.h \
         mainwindow.h \
     calculator.h \
     imagewindow1.h

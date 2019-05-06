@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include "calculator.h"
 #include <QLineEdit>
+#include "exercise.h"
 #include <QCloseEvent>
 #include "imagewindow1.h"
 
@@ -19,11 +20,13 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     void Init();
+    Exercise * exer;
+    void InitExercices();
     QMainWindow * window = new QMainWindow();
 private slots:
     void closeEvent (QCloseEvent *event);
     void on_pushButton_2_clicked();
-    void GenerateChart(std::vector<Coords> coord1, std::vector<Coords> coord2, double x_x);
+    void GenerateChart(std::vector<Coords> coord1, std::vector<Coords> coord2);
     void GenerateRule (QString a, QString b, QLineEdit * lineEdit);
     void on_TrouverB_X_textChanged(const QString &arg1);
 
@@ -66,6 +69,10 @@ private slots:
     void on_lineEdit_2_textChanged(const QString &arg1);
 
     void on_Demarche1_Regle_textChanged(const QString &arg1);
+
+    void on_Exer_Reset_clicked();
+
+    void on_Exer_NextBtn_clicked();
 
 private:
     Ui::MainWindow *ui;
