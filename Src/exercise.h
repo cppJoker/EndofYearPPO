@@ -5,8 +5,11 @@
 #include <vector>
 #include <QPushButton>
 #include <QLabel>
+#include <ctime>
 #include <QVector>
 #include <QLineEdit>
+#include <algorithm>
+#include <random>
 #include <QTextEdit>
 #include <QTime>
 #include <QCoreApplication>
@@ -27,10 +30,15 @@ class Exercise{
 
 public:
 
-
     Exercise(QVector<Question> qrc2, QLineEdit * Exer_Input, QTextEdit * Exer_RichText,
     QLabel * Exer_QuestionNum, QLabel * Exer_Recherche, QPushButton * Exer_NextBtn, QPushButton * Exer_Reset){
         QVector<Question> qrc = qrc2;
+        srand((unsigned)time(0));
+        int shuffleMax = (rand()%1000)+1;
+        auto rng = std::default_random_engine {};
+        for (int i; i < shuffleMax; i++) {
+            std::shuffle(std::begin(qrc),std::end(qrc), rng);
+        }
         _exercice.questions = qrc;
         _exercice.Length = qrc.length();
         _exercice.Level = 0;
@@ -101,7 +109,14 @@ public:
 
     }
     void CheckAnswer(){
-        if(Exer_Input->text() != _exercice.questions[_exercice.Level].Answer){
+        QString str = Exer_Input->text();
+        for (int i = 0; i < str.length(); i++) {
+            QChar c = str[i];
+            if(c == ','){
+                str[i] = '.';
+            }
+        }
+        if(str != _exercice.questions[_exercice.Level].Answer){
             LoadContent(FALSE);
         }else{
             LoadContent(CORRECT);
