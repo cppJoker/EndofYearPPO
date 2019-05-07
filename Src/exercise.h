@@ -26,21 +26,23 @@ struct Question{
     QString AnswerLabel;
     QString Answer_SbS;
 };
+
 class Exercise{
 
 public:
 
-    Exercise(QVector<Question> qrc2, QLineEdit * Exer_Input, QTextEdit * Exer_RichText,
+    Exercise(std::vector<Question> qrc2, QLineEdit * Exer_Input, QTextEdit * Exer_RichText,
     QLabel * Exer_QuestionNum, QLabel * Exer_Recherche, QPushButton * Exer_NextBtn, QPushButton * Exer_Reset){
-        QVector<Question> qrc = qrc2;
+        std::vector<Question> qrc = qrc2;
         srand((unsigned)time(0));
         int shuffleMax = (rand()%1000)+1;
         auto rng = std::default_random_engine {};
-        for (int i; i < shuffleMax; i++) {
-            std::shuffle(std::begin(qrc),std::end(qrc), rng);
+        rng.seed(shuffleMax);
+        for (int i = 0; i < shuffleMax; i++) {
+            std::shuffle(std::begin(qrc),std::end(qrc),rng);
         }
         _exercice.questions = qrc;
-        _exercice.Length = qrc.length();
+        _exercice.Length = qrc.size();
         _exercice.Level = 0;
         this->Exer_Input = Exer_Input;
         this->Exer_RichText = Exer_RichText;
@@ -167,6 +169,12 @@ public:
     }
 
     void Reset(){
+        int shuffleMax = (rand()%1000)+1;
+        auto rng = std::default_random_engine {};
+        rng.seed(shuffleMax);
+        for (int i = 0; i < shuffleMax; i++) {
+            std::shuffle(std::begin(_exercice.questions),std::end(_exercice.questions),rng);
+        }
         Exer_Input->setText("");
         _exercice.Level = 0;
         _exercice.WhereAt = "Question " + QString::number(_exercice.Level+1) + "/" + QString::number(_exercice.Length);
@@ -186,7 +194,7 @@ private:
     }
     enum btnState {NEW, CORRECT, FALSE, NEXT,END, REFRESH};
     struct Exer{
-        QVector<Question> questions;
+        std::vector<Question> questions;
         QString WhereAt;
         int Level;
         int Length;

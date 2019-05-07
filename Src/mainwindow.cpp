@@ -115,10 +115,12 @@ void MainWindow::Init(){
 
 void MainWindow::InitExercices(){
     Question q1 = {"Hey","Ho","Hey","Ho"};
-    Question q2 = {"Hey","Ho","Hey","Ho"};
-    QVector<Question> as;
+    Question q2 = {"HeODOI","HDo","YI","Ho"};
+    Question q3 = {"HeDHDNy","HDo","GH","Ho"};
+    std::vector<Question> as;
     as.push_back(q1);
     as.push_back(q2);
+    as.push_back(q3);
     exer = new Exercise(as,ui->Exer_Input,ui->Exer_RichText,ui->Exer_QuestionNum,ui->Exer_Recherche,ui->Exer_NextBtn, ui->Exer_Reset);
     exer->FirstQuestion();
 }
