@@ -5,13 +5,13 @@
 #include "calculator.h"
 #include <QtCharts/QLineSeries>
 #include <QtCharts/QSplineSeries>
-#include <thread>
 #include <QtCharts/QChartView>
 #include <QtCharts/QChart>
 #include <QtCharts/QCategoryAxis>
-#include <QTextStream>
 #include <QtCharts/QValueAxis>
 #include <QtCharts/QLogValueAxis>
+#include <thread>
+#include <QTextStream>
 #include <vector>
 #include <QMessageBox>
 #include <QProcess>
@@ -148,7 +148,7 @@ void MainWindow::on_pushButton_2_clicked()
     double Regle2_A = SRegle2_A.toDouble();
     double Regle2_B = SRegle2_B.toDouble();
     if(Regle1_A == Regle2_A){
-        ui->Demarche_Edit->setHtml("<dl style=\"text-align:center\"> Calcul impossible: <b>A1 = A2</b> </dl>");
+        ui->Demarche_Edit->setHtml("<dl style=\"text-align:center\"> Calcul impossible");
         return;
     }
 
@@ -223,44 +223,49 @@ void MainWindow::on_pushButton_2_clicked()
 }
 
 void MainWindow::GenerateChart(std::vector<Coords> coord1, std::vector<Coords> coord2){
-       QChart *chart = new QChart();
-       QValueAxis *axisX = new QValueAxis;
-       axisX->setTickCount(ui->lineEdit->text().toInt());
-       chart->addAxis(axisX, Qt::AlignBottom);
+    window->setWindowTitle("Chargement en cours...");
+    window->resize(800,600);
+    window->show();
+    QChart *chart = new QChart();
+    QValueAxis *axisX = new QValueAxis;
+    axisX->setTickCount(ui->lineEdit->text().toInt());
+    chart->addAxis(axisX, Qt::AlignBottom);
 
-       QSplineSeries *series = new QSplineSeries;
-       for(Coords i: coord1)
-            series->append(i.x,i.y);
+    QSplineSeries *series = new QSplineSeries;
+    for(Coords i: coord1)
+         series->append(i.x,i.y);
 
-       series->setColor(Qt::blue);
-       series->setName(ui->Demarche1_Regle->text().mid(7));
-       chart->addSeries(series);
+    series->setColor(Qt::blue);
+    series->setName(ui->Demarche1_Regle->text().mid(7));
+    chart->addSeries(series);
 
-       QValueAxis *axisY = new QValueAxis;
-       axisY->setTickCount(ui->lineEdit_2->text().toInt());
-       chart->addAxis(axisY, Qt::AlignLeft);
-       series->attachAxis(axisX);
-       series->attachAxis(axisY);
+    QValueAxis *axisY = new QValueAxis;
+    axisY->setTickCount(ui->lineEdit_2->text().toInt());
+    chart->addAxis(axisY, Qt::AlignLeft);
+    series->attachAxis(axisX);
+    series->attachAxis(axisY);
 
-       QSplineSeries *series2 = new QSplineSeries;
-       for(Coords i: coord2)
-            series2->append(i.x,i.y);
+    QSplineSeries *series2 = new QSplineSeries;
+    for(Coords i: coord2)
+         series2->append(i.x,i.y);
 
-       series2->setName(ui->Demarche2_Regle->text().mid(7));
-       series2->setColor(Qt::red);
-       chart->addSeries(series2);
-       axisX->setTitleText("Axe des X");
-       axisY->setTitleText("Axe des Y");
-       series2->attachAxis(axisY);
-       series2->attachAxis(axisX);
+    series2->setName(ui->Demarche2_Regle->text().mid(7));
+    series2->setColor(Qt::red);
+    chart->addSeries(series2);
+    axisX->setTitleText("Axe des X");
+    axisY->setTitleText("Axe des Y");
+    series2->attachAxis(axisY);
+    series2->attachAxis(axisX);
 
-       QChartView *chartView = new QChartView(chart);
-       chartView->setRenderHint(QPainter::Antialiasing);
-       window->setCentralWidget(chartView);
-       window->setStyleSheet("background-color: transparent");
-       window->resize(800,600);
-       window->setWindowTitle("Graphique d'intersection // Precision X: " + ui->lineEdit->text() + " Precision Y: " + ui->lineEdit_2->text());
-       window->show();
+    QChartView *chartView = new QChartView(chart);
+    chartView->setRenderHint(QPainter::Antialiasing);
+    window->setCentralWidget(chartView);
+    window->setStyleSheet("background-color: transparent");
+    window->resize(800,600);
+    while(!chartView->isVisible()){
+        delay(1);
+    }
+    window->setWindowTitle("Graphique d'intersection // Precision X: " + ui->lineEdit->text() + " Precision Y: " + ui->lineEdit_2->text());
 }
 
 void MainWindow::GenerateRule (QString a, QString b, QLineEdit * lineEdit){
@@ -293,7 +298,7 @@ void Calcul(Fonction f, QString arg1, QString arg2, QString arg3, QLineEdit * li
         double b = arg3.toDouble();
         double a = arg2.toDouble();
         if(a == 0.00000000000){
-            lineEdit->setText("Calcul impossbile: a = 0 (x * 0 = 0)");
+            lineEdit->setText("Calcul impossbile");
             return;
         }
         double y = arg1.toDouble();
@@ -310,7 +315,7 @@ void Calcul(Fonction f, QString arg1, QString arg2, QString arg3, QLineEdit * li
         double y = arg2.toDouble();
         double a = arg3.toDouble();
         if(a == 0.00000000000){
-            lineEdit->setText("Calcul impossbile: a = 0 (x * 0 = 0)");
+            lineEdit->setText("Calcul impossible");
             return;
         }
         double res = 0;
@@ -324,7 +329,7 @@ void Calcul(Fonction f, QString arg1, QString arg2, QString arg3, QLineEdit * li
         double x = arg1.toDouble();
         double a = arg2.toDouble();
         if(a == 0.00000000000){
-            lineEdit->setText("Calcul impossbile: a = 0 (x * 0 = 0)");
+            lineEdit->setText("Calcul impossible");
             return;
         }
         double b = arg3.toDouble();
