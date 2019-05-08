@@ -12,6 +12,8 @@
 #include <random>
 #include <QTextEdit>
 #include <QTime>
+#include <QTabWidget>
+#include <QTabBar>
 #include <QCoreApplication>
 #define BEGINOFEXER ("Commencer la série d'exercises")
 #define ENDOFEXER ("Fin de la série")
@@ -32,7 +34,7 @@ class Exercise{
 public:
 
     Exercise(std::vector<Question> qrc2, QLineEdit * Exer_Input, QTextEdit * Exer_RichText,
-    QLabel * Exer_QuestionNum, QLabel * Exer_Recherche, QPushButton * Exer_NextBtn, QPushButton * Exer_Reset){
+    QLabel * Exer_QuestionNum, QLabel * Exer_Recherche, QPushButton * Exer_NextBtn, QPushButton * Exer_Reset, QTabWidget * tab){
         std::vector<Question> qrc = qrc2;
         srand((unsigned)time(0));
         int shuffleMax = (rand()%1000)+1;
@@ -41,9 +43,11 @@ public:
         for (int i = 0; i < shuffleMax; i++) {
             std::shuffle(std::begin(qrc),std::end(qrc),rng);
         }
+        _exercice.Score = 0;
         _exercice.questions = qrc;
         _exercice.Length = qrc.size();
         _exercice.Level = 0;
+        this->tab = tab;
         this->Exer_Input = Exer_Input;
         this->Exer_RichText = Exer_RichText;
         this->Exer_QuestionNum = Exer_QuestionNum;
@@ -61,12 +65,15 @@ public:
         switch (flag) {
         case REFRESH:
             {
+            tab->setTabEnabled(0, true);
+            tab->setTabEnabled(2, true);
             ChangeInputState(false);
             Exer_NextBtn->setText(BEGINOFEXER);
             }
             break;
         case CORRECT:
             {
+                _exercice.Score++;
                 ChangeInputState(true);
                 Exer_RichText->setText(Exer_RichText->toHtml() + "\nBonne réponse!\n ");
                 if(_exercice.Level >= (_exercice.Length-1) ){
@@ -103,7 +110,9 @@ public:
         case END:
             {
             ChangeInputState(false);
-            Exer_RichText->setHtml("newQuestion.htmlText""");
+            tab->setTabEnabled(0, true);
+            tab->setTabEnabled(2, true);
+            Exer_RichText->setHtml("Fin des exercises!");
             Exer_NextBtn->setText(ZEROEXER);
             }
             break;
@@ -161,6 +170,8 @@ public:
         }
         if(Exer_NextBtn->text() == BEGINOFEXER){
             delay2(20);
+            tab->setTabEnabled(0, false);
+            tab->setTabEnabled(2, false);
             ChangeInputState(true);
             _exercice.WhereAt = "Question " + QString::number(_exercice.Level+1) + "/" + QString::number(_exercice.Length);
             LoadContent();
@@ -179,7 +190,7 @@ public:
         _exercice.Level = 0;
         _exercice.WhereAt = "Question " + QString::number(_exercice.Level+1) + "/" + QString::number(_exercice.Length);
         ChangeInputState(false);
-        Exercise(_exercice.questions,Exer_Input,Exer_RichText,Exer_QuestionNum,Exer_Recherche, Exer_NextBtn, Exer_Reset);
+        Exercise(_exercice.questions,Exer_Input,Exer_RichText,Exer_QuestionNum,Exer_Recherche, Exer_NextBtn, Exer_Reset, tab);
         LoadContent(REFRESH);
     }
 
@@ -197,9 +208,11 @@ private:
         std::vector<Question> questions;
         QString WhereAt;
         int Level;
+        int Score;
         int Length;
         btnState BtnState;
     };
+    QTabWidget * tab;
     QPushButton * Exer_NextBtn;
     QPushButton * Exer_Reset;
     QLineEdit * Exer_Input;

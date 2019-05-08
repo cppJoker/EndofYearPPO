@@ -112,16 +112,21 @@ void MainWindow::Init(){
     delay(1);
     InitExercices();
 }
-
+//struct Question{
+//    QString htmlText;
+//    QString Answer;
+//    QString AnswerLabel;
+//    QString Answer_SbS;
+//};
 void MainWindow::InitExercices(){
-    Question q1 = {"Hey","Ho","Hey","Ho"};
+    Question q1 = {"<dl style=\"text-align:center\"> Trouver <b>x</b> dans l'expression suivante:<br>15 = 6x + 90","Ho","X =","Ho"};
     Question q2 = {"HeODOI","HDo","YI","Ho"};
     Question q3 = {"HeDHDNy","HDo","GH","Ho"};
     std::vector<Question> as;
     as.push_back(q1);
     as.push_back(q2);
     as.push_back(q3);
-    exer = new Exercise(as,ui->Exer_Input,ui->Exer_RichText,ui->Exer_QuestionNum,ui->Exer_Recherche,ui->Exer_NextBtn, ui->Exer_Reset);
+    exer = new Exercise(as,ui->Exer_Input,ui->Exer_RichText,ui->Exer_QuestionNum,ui->Exer_Recherche,ui->Exer_NextBtn, ui->Exer_Reset, ui->tabWidget);
     exer->FirstQuestion();
 }
 
@@ -303,8 +308,8 @@ void Calcul(Fonction f, QString arg1, QString arg2, QString arg3, QLineEdit * li
         }
         double y = arg1.toDouble();
         double res = 0;
-        y /= a;
         y -= b;
+        y /= a;
         res = y;
         result = QString::number(res);
     }
