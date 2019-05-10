@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui network
 QT += charts
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
@@ -26,17 +26,20 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+    clientupdate.cpp \
         main.cpp \
         mainwindow.cpp \
     imagewindow1.cpp
 
 HEADERS += \
+    clientupdate.h \
     exercise.h \
         mainwindow.h \
     calculator.h \
     imagewindow1.h
 
 FORMS += \
+    clientupdate.ui \
         mainwindow.ui \
     imagewindow1.ui
 
