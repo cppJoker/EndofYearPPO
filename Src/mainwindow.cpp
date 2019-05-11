@@ -64,8 +64,8 @@ MainWindow::MainWindow(QWidget *parent) :
     QProcess process;
     process.start("defaults read -g AppleInterfaceStyle");
     process.waitForFinished(-1);
-    QString stdout = process.readAllStandardOutput();
-    if(stdout != "Dark\n"){
+    QString stdouty = process.readAllStandardOutput();
+    if(stdouty != "Dark\n"){
         QMessageBox msgBox;
         msgBox.setIcon(QMessageBox::Information);
         msgBox.setText("Avertissement");
