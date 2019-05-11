@@ -21,7 +21,7 @@ public:
     ~MainWindow();
     void Init();
     Exercise * exer;
-    void InitExercices();
+    void GetProgramInfo();
     QMainWindow * window = new QMainWindow();
 private slots:
     void closeEvent (QCloseEvent *event);

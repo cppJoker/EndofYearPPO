@@ -17,10 +17,16 @@
 #include <QProcess>
 #include "imagewindow1.h"
 #include "exercise.h"
+#include <QFile>
+#include <QByteArray>
+#include <QJsonObject>
+#include <QJsonDocument>
+#include <QJsonArray>
 #include <QCloseEvent>
 #include <QTime>
 #include <QPushButton>
 #include <QLineEdit>
+#include <QFileInfo>
 
 using namespace QtCharts;
 
@@ -73,10 +79,10 @@ MainWindow::MainWindow(QWidget *parent) :
         msgBox.setDetailedText("Il se peut qu'il y est quelques problèmes sur le contraste de certain mots. Le programme reste néanmoins fonctionnel et lisable.");
         msgBox.setInformativeText("L'apparence du logiciel a été conçu pour être optimisé avec le thème noir de OSX Mojave");
         msgBox.exec();
-        ui->label_15->setText("Trouver <b>B</b>");
-        ui->label_15->setText("Trouver <b>X</b>");
-        ui->label_15->setText("Trouver <b>Y</b>");
-        ui->label_22->setText("Trouver l'<b>intersection</b>");
+        ui->label_15->setText("Trouver <b color:\"black\">B</b>");
+        ui->label_15->setText("Trouver <b color:\"black\">X</b>");
+        ui->label_15->setText("Trouver <b color:\"black\">Y</b>");
+        ui->label_22->setText("Trouver l'<b color:\"black\">intersection</b>");
     }
     delay(1);
     Init();
@@ -101,16 +107,10 @@ void MainWindow::Init(){
     ui->tab_10->setLayout(ui->gridLayout_7);
     ui->tab_11->setLayout(ui->gridLayout_8);
     delay(1);
-    QLabel *author = new QLabel();
-    author->setText("Relations et fonctions || <a href=\"https://github.com/cppJoker/EndofYearPPO\">Documentation et code source</a> || License: <a href=\"https://www.gnu.org/licenses/gpl-3.0.en.html\">GNU GPL v3 (open source)</a>");
-    author->setTextFormat(Qt::RichText);
-    author->setTextInteractionFlags(Qt::TextBrowserInteraction);
-    author->setFocusPolicy(Qt::FocusPolicy::NoFocus);
-    author->setOpenExternalLinks(true);
-    statusBar()->addWidget(author);
+    
     setFixedSize(size());
     delay(1);
-    InitExercices();
+    GetProgramInfo();
 }
 //struct Question{
 //    QString htmlText;
@@ -118,16 +118,34 @@ void MainWindow::Init(){
 //    QString AnswerLabel;
 //    QString Answer_SbS;
 //};
-void MainWindow::InitExercices(){
-    Question q1 = {"<dl style=\"text-align:center\"> Trouver <b>x</b> dans l'expression suivante:<br>15 = 6x + 90","Ho","X =","Ho"};
-    Question q2 = {"HeODOI","HDo","YI","Ho"};
-    Question q3 = {"HeDHDNy","HDo","GH","Ho"};
-    std::vector<Question> as;
-    as.push_back(q1);
-    as.push_back(q2);
-    as.push_back(q3);
-    exer = new Exercise(as,ui->Exer_Input,ui->Exer_RichText,ui->Exer_QuestionNum,ui->Exer_Recherche,ui->Exer_NextBtn, ui->Exer_Reset, ui->tabWidget);
+
+void MainWindow::GetProgramInfo(){
+	QFile file("info.json");
+	
+	file.open(QIODevice::ReadOnly | QIODevice::Text);
+	QByteArray jsonData = file.readAll();
+	file.close();
+
+	QJsonDocument document = QJsonDocument::fromJson(jsonData);
+	QJsonObject object = document.object();
+	QJsonValue value = object.value("exercices");
+	QJsonArray array = value.toArray();
+	std::vector<Question> QuVector;
+	foreach(const QJsonValue & v, array) {
+		QuVector.push_back({ v.toObject().value("htmlText").toString(),v.toObject().value("Answer").toString(),
+			v.toObject().value("AnswerLabel").toString(),v.toObject().value("Answer_Explication").toString()});
+	}
+    exer = new Exercise(QuVector,ui->Exer_Input,ui->Exer_RichText,ui->Exer_QuestionNum,ui->Exer_Recherche,ui->Exer_NextBtn, ui->Exer_Reset, ui->tabWidget);
     exer->FirstQuestion();
+	value = object.value("Footer");
+	QString AppVer = value.toString();
+	QLabel* author = new QLabel();
+	author->setText(AppVer);
+	author->setTextFormat(Qt::RichText);
+	author->setTextInteractionFlags(Qt::TextBrowserInteraction);
+	author->setFocusPolicy(Qt::FocusPolicy::NoFocus);
+	author->setOpenExternalLinks(true);
+	statusBar()->addWidget(author);
 }
 
 MainWindow::~MainWindow()

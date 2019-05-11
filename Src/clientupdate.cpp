@@ -10,7 +10,8 @@
 #include <QMessageBox>
 #include <QTextCodec>
 #include <QFile>
-
+#include <QFileInfo>
+#define UPDATELINK "https://raw.githubusercontent.com/cppJoker/EndofYearPPO/VisualC/Src/info.json"
 
 ClientUpdate::ClientUpdate(QWidget *parent) :
     QMainWindow(parent),
@@ -25,27 +26,43 @@ ClientUpdate::ClientUpdate(QWidget *parent) :
     ui->statusbar->addWidget(footer);
     setWindowFlags(Qt::WindowMaximizeButtonHint | Qt::WindowCloseButtonHint | Qt::Window | Qt::FramelessWindowHint);
     QObject::connect(this, SIGNAL(done()), this, SLOT(close()));
-    setTarget("https://stackoverflow.com/questions/14131127/qbytearray-to-qstring.html");
+    setTarget(UPDATELINK);
     download();
 }
 
 void ClientUpdate::setTarget(const QString &t) {
     this->target = t;
 }
-
+bool fileExists(QString path) {
+	QFileInfo check_file(path);
+	if (check_file.exists() && check_file.isFile()) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
 void ClientUpdate::downloadFinished(QNetworkReply *data) {
-    QFile localFile("downloadedfile.html");
+	const QByteArray sdata = data->readAll();
+	QString DataAsString(sdata);
+	QFile localFile("info.json");
+	if (fileExists("info.json") && DataAsString!="") {
+		localFile.remove();
+	}
     if (!localFile.open(QIODevice::ReadWrite | QIODevice::Append | QIODevice::Text))
     {
         QApplication::instance()->quit();
     }
-    const QByteArray sdata = data->readAll();
-    QString DataAsString(sdata);
     QTextStream out(&localFile);
     out << DataAsString;
     localFile.close();
     delete data;
     data = 0;
+	QTime dieTime = QTime::currentTime().addMSecs(1000);
+	while (QTime::currentTime() < dieTime)
+	{
+		QCoreApplication::processEvents(QEventLoop::AllEvents, 100);
+	}
     emit done();
 }
 
