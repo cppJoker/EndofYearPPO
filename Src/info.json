@@ -1,24 +1,44 @@
-{
-    
-    "Footer" : "Relations et fonctions || <a href=\""+"https://github.com/cppJoker/EndofYearPPO"+"\">Documentation</a> || Version: Build 52 Beta",
-    "exercices": [
-        {
-            "htmlText": "<dl style=\"text-align:center\"> Trouver <b>x</b> dans l'expression suivante:<br>15 = 6x + 90",
-            "Answer": "-12.5",
-            "AnswerLabel": "X = ",
-            "Answer_Explication": "La reponse est -12.5!<br>15 - 90 = 75<br>75/6 = -12.5"
-        },
-        {
-            "htmlText": "",
-            "Answer": "",
-            "AnswerLabel": "",
-            "Answer_Explication": ""
-        },
-        {
-            "htmlText": "as",
-            "Answer": "asd",
-            "AnswerLabel": "dsa",
-            "Answer_Explication": "asd"
-        }
-    ]
-}
+{
+
+    "exercices": [
+
+        {
+
+            "htmlText": "<dl style=\"text-align:center\"> Trouver <b>x</b> dans l'expression suivante:<br>15 = 6x + 90",
+
+            "Answer": "-12.5",
+
+            "AnswerLabel": "X = ",
+
+            "Answer_Explication": "La reponse est -12.5!<br>15 - 90 = 75<br>75/6 = -12.5"
+
+        },
+
+        {
+
+            "htmlText": "",
+
+            "Answer": "",
+
+            "AnswerLabel": "",
+
+            "Answer_Explication": ""
+
+        },
+
+        {
+
+            "htmlText": "as",
+
+            "Answer": "asd",
+
+            "AnswerLabel": "dsa",
+
+            "Answer_Explication": "asd"
+
+        }
+
+    ]
+
+}
+
