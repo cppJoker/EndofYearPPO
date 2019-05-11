@@ -216,10 +216,30 @@ void MainWindow::on_pushButton_2_clicked()
             return;
         }
         double YL1; double YF1; double YL2; double YF2;
-        {double x = lookedx; double a = Regle1_A; double b = Regle1_B; YL1 =(a*x) + b;}
-        {double x = Forwardx; double a = Regle1_A; double b = Regle1_B; YF1 =(a*x) + b;}
-        {double x = lookedx; double a = Regle2_A; double b = Regle2_B; YL2 =(a*x) + b;}
-        {double x = Forwardx; double a = Regle2_A; double b = Regle2_B; YF2 =(a*x) + b;}
+        {
+			double x = lookedx;
+			double a = Regle1_A;
+			double b = Regle1_B;
+			YL1 = (a*x) + b;
+		}
+        {
+			double x = Forwardx;
+			double a = Regle1_A;
+			double b = Regle1_B;
+			YF1 = (a*x) + b;
+		}
+        {
+			double x = lookedx;
+			double a = Regle2_A;
+			double b = Regle2_B;
+			YL2 = (a*x) + b;
+		}
+        {
+			double x = Forwardx;
+			double a = Regle2_A;
+			double b = Regle2_B;
+			YF2 = (a*x) + b;
+		}
 
         Coords Regle1C{
             lookedx,YL1
