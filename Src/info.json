@@ -1,6 +1,6 @@
 {
     
-    "Footer" : "Relations et fonctions || <a href=\"https://github.com/cppJoker/EndofYearPPO\">Documentation</a> || Version: Build 52 Beta",
+    "Footer" : "Relations et fonctions || <a href=\"https://github.com/cppJoker/EndofYearPPO\">Documentation</a> || Version: Version 52 Beta",
     "exercices": [
         {
             "htmlText": "<dl style=\"text-align:center\"> Trouver <b>x</b> dans l'expression suivante:<br>15 = 6x + 90",
