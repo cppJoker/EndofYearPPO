@@ -1,19 +1,37 @@
 {
-    "AppVersion": 21.4,
-    "GitHub Link": "https://github.com/cppJoker/EndofYearPPO",
+
+    "AppVersion": "Build 52 Beta",
+
+    "GitHubLink": "https://github.com/cppJoker/EndofYearPPO",
+
     "exercices":[
+
         {
+
             "htmlText":"",
+
             "Answer": "",
+
             "AnswerLabel": "",
+
             "Answer_Explication": ""
+
         },
+
         {
+
             "htmlText":"as",
+
             "Answer": "asd",
+
             "AnswerLabel": "dsa",
+
             "Answer_Explication": "asd"
+
         }
 
+
+
     ]
+
 }
