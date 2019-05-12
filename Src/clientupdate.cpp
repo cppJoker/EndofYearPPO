@@ -55,7 +55,7 @@ void ClientUpdate::downloadFinished(QNetworkReply *data) {
 	}
     if (!localFile.open(QIODevice::ReadWrite | QIODevice::Append | QIODevice::Text))
     {
-		ui->label->setText("Une erreur s'est produite...");
+		ui->label->setText("Une erreur s'est produite [FA::403]");
 		QTime dieTime = QTime::currentTime().addMSecs(2000);
 		while (QTime::currentTime() < dieTime)
 		{

@@ -69,13 +69,16 @@ public:
             tab->setTabEnabled(2, true);
             ChangeInputState(false);
             Exer_NextBtn->setText(BEGINOFEXER);
+			Exer_RichText->setHtml("");
+			Exer_Recherche->setText("Réponse:");
+			Exer_QuestionNum->setText("Question 1/?");
             }
             break;
         case CORRECT:
             {
                 _exercice.Score++;
                 ChangeInputState(true);
-                Exer_RichText->setText(Exer_RichText->toHtml() + "\nBonne réponse!\n ");
+                Exer_RichText->setHtml(Exer_RichText->toHtml() + "\nBonne réponse!\n ");
                 if(_exercice.Level >= (_exercice.Length-1) ){
                     Exer_NextBtn->setText(ENDOFEXER);
                 }else{
@@ -87,7 +90,7 @@ public:
         case FALSE:
             {
                 ChangeInputState(true);
-                Exer_RichText->setText(Exer_RichText->toHtml() + "<dl style=\"text-align:center\"><br>Mauvaise réponse!<br> " + _exercice.questions[_exercice.Level].Answer_Explication);
+                Exer_RichText->setHtml(Exer_RichText->toHtml() + "<dl style=\"text-align:center\"><br>Mauvaise réponse!<br> " + _exercice.questions[_exercice.Level].Answer_Explication);
                 if(_exercice.Level >= (_exercice.Length-1)){
                     Exer_NextBtn->setText(ENDOFEXER);
                 }else{
@@ -112,7 +115,10 @@ public:
             ChangeInputState(false);
             tab->setTabEnabled(0, true);
             tab->setTabEnabled(2, true);
-            Exer_RichText->setHtml("Fin des exercises!");
+            Exer_RichText->setHtml("<dl style=\"text-align:center\">Fin des exercises! Vous avez eu <b>" +
+				QString::number(_exercice.Score) + "</b> bonne(s) réponse(s) sur <b>" + QString::number(_exercice.Length) + "</b>.");
+			Exer_Recherche->setText("Réponse:");
+			Exer_QuestionNum->setText("Question 1/?");
             Exer_NextBtn->setText(ZEROEXER);
             }
             break;

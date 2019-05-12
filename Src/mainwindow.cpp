@@ -357,10 +357,6 @@ void Calcul(Fonction f, QString arg1, QString arg2, QString arg3, QLineEdit * li
         double x = arg1.toDouble();
         double y = arg2.toDouble();
         double a = arg3.toDouble();
-        if(a == 0.00000000000){
-            lineEdit->setText("Calcul impossible");
-            return;
-        }
         double res = 0;
         y -= (x*a);
         res = y;
@@ -371,10 +367,6 @@ void Calcul(Fonction f, QString arg1, QString arg2, QString arg3, QLineEdit * li
     {
         double x = arg1.toDouble();
         double a = arg2.toDouble();
-        if(a == 0.00000000000){
-            lineEdit->setText("Calcul impossible");
-            return;
-        }
         double b = arg3.toDouble();
         double res = 0;
         res =(a*x) + b;
