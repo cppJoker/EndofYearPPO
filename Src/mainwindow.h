@@ -6,7 +6,14 @@
 #include <QLineEdit>
 #include "exercise.h"
 #include <QCloseEvent>
+#include <QtCharts/QChart>
+
 #include "imagewindow1.h"
+
+QT_BEGIN_NAMESPACE
+class QGestureEvent;
+QT_END_NAMESPACE
+QT_CHARTS_USE_NAMESPACE
 
 namespace Ui {
 class MainWindow;

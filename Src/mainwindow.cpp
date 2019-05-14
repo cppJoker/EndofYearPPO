@@ -19,6 +19,9 @@
 #include "exercise.h"
 #include <QFile>
 #include <QByteArray>
+#include <QtWidgets/QGesture>
+#include <QtWidgets/QGraphicsScene>
+#include <QtWidgets/QGraphicsView>
 #include <QJsonObject>
 #include <QJsonDocument>
 #include <QJsonArray>
@@ -67,6 +70,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    grabGesture(Qt::PanGesture);
+    grabGesture(Qt::PinchGesture);
     QProcess process;
     process.start("defaults read -g AppleInterfaceStyle");
     process.waitForFinished(-1);
@@ -264,7 +269,6 @@ void MainWindow::on_pushButton_2_clicked()
         GenerateChart(cord1,cord2);
     }
 }
-
 void MainWindow::GenerateChart(std::vector<Coords> coord1, std::vector<Coords> coord2){
     window->setWindowTitle("Chargement en cours...");
     window->resize(800,600);

@@ -50,8 +50,8 @@ void ClientUpdate::downloadFinished(QNetworkReply *data) {
 		ui->label->setText("Preparation en cours...");
 		localFile.remove();
 	}
-	else {
-		ui->label->setText("Preparation en cours...");
+    else {
+        ui->label->setText("Preparation en cours...");
 	}
     if (!localFile.open(QIODevice::ReadWrite | QIODevice::Append | QIODevice::Text))
     {
@@ -68,11 +68,11 @@ void ClientUpdate::downloadFinished(QNetworkReply *data) {
     localFile.close();
     delete data;
     data = 0;
-	QTime dieTime = QTime::currentTime().addMSecs(1000);
-	while (QTime::currentTime() < dieTime)
-	{
-		QCoreApplication::processEvents(QEventLoop::AllEvents, 100);
-	}
+    QTime dieTime = QTime::currentTime().addMSecs(1000);
+    while (QTime::currentTime() < dieTime)
+    {
+        QCoreApplication::processEvents(QEventLoop::AllEvents, 100);
+    }
     emit done();
 }
 
@@ -85,6 +85,7 @@ void ClientUpdate::download() {
 void ClientUpdate::downloadProgress(qint64 recieved, qint64 total) {
     ui->progressBar->setMaximum(total);
     ui->progressBar->setValue(recieved);
+
 }
 
 ClientUpdate::~ClientUpdate()
