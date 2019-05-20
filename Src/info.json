@@ -1,5 +1,5 @@
 {
-    "Footer" : "Relations et fonctions || <a href=\"https://github.com/cppJoker/EndofYearPPO\">Documentation</a> || Version 52 Beta",
+    "Footer" : "Relations et fonctions || Version 20-5-19",
     "exercices": [
 
         {
@@ -7,33 +7,33 @@
 
             "Answer": "-12.5",
 
-            "AnswerLabel": "X = ",
+            "AnswerLabel": "x = ",
 
-            "Answer_Explication": "La reponse est <b>-12.5</b>!<br>15 - 90 = 75<br>75/6 = -12.5"
-
-        },
-
-        {
-
-            "htmlText": "",
-
-            "Answer": "",
-
-            "AnswerLabel": "",
-
-            "Answer_Explication": ""
+            "Answer_Explication": "La reponse était <b>-12.5</b>"
 
         },
 
         {
 
-            "htmlText": "as",
+            "htmlText": "<dl style=\"text-align:center\"> Trouver <b>y</b> dans l'expression suivante:<br>y = 2*10 + 176",
 
-            "Answer": "asd",
+            "Answer": "196",
 
-            "AnswerLabel": "dsa",
+            "AnswerLabel": "y = ",
 
-            "Answer_Explication": "asd"
+            "Answer_Explication": "La reponse était <b>196</b>"
+
+        },
+
+        {
+
+            "htmlText": "<dl style=\"text-align:center\"> Trouver <b>b</b> dans l'expression suivante:<br>346 = 23*12 + b",
+
+            "Answer": "70",
+
+            "AnswerLabel": "b = ",
+
+            "Answer_Explication": "La variable b était <b>70</b>"
 
         }
 
