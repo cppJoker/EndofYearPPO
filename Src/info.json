@@ -39,7 +39,7 @@
 
         {
 
-            "htmlText": "<dl style=\"text-align:center\"> Simon a 10$, à chaque semaine, il obtient 5$. <br> Après 13 semaines, combien d'argent aura-t-il? <br> <i>N'oubliez pas d'inclure les symboles (ex 50<b>$</b>)</i>",
+            "htmlText": "<dl style=\"text-align:center\"> Simon a 10$, à chaque semaine, il obtient 5$. <br> Après 13 semaines, combien d'argent aura-t-il? <br><br><i>N'oubliez pas d'inclure les symboles: <strike>50</strike> -> 50$</i>",
 
             "Answer": "75$",
 
