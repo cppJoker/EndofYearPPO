@@ -9,7 +9,7 @@
 
             "AnswerLabel": "x = ",
 
-            "Answer_Explication": "La reponse était <b>-12.5</b>"
+            "Answer_Explication": "La réponse était <b>-12.5</b>"
 
         },
 
@@ -21,7 +21,7 @@
 
             "AnswerLabel": "y = ",
 
-            "Answer_Explication": "La reponse était <b>196</b>"
+            "Answer_Explication": "La variable y était <b>196</b>"
 
         },
 
@@ -34,6 +34,18 @@
             "AnswerLabel": "b = ",
 
             "Answer_Explication": "La variable b était <b>70</b>"
+
+        },
+
+        {
+
+            "htmlText": "<dl style=\"text-align:center\"> Simon a 10$, à chaque semaine, il obtient 5$. <br> Après 13 semaines, combien d'argent aura-t-il? <br> <i>N'oubliez pas d'inclure les symboles (ex 50<b>$</b>)</i>",
+
+            "Answer": "75$",
+
+            "AnswerLabel": "Dans 12 semaines, il aura ",
+
+            "Answer_Explication": "Dans 12 semaines, il aura <b>75$</b>"
 
         }
 
