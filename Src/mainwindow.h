@@ -6,6 +6,7 @@
 #include <QLineEdit>
 #include "exercise.h"
 #include <QCloseEvent>
+#include <vector>
 #include <QtCharts/QChart>
 
 #include "imagewindow1.h"
@@ -29,6 +30,7 @@ public:
     void Init();
     Exercise * exer;
     void GetProgramInfo();
+    std::vector<ImageWindow1*> IW1List = {};
     QMainWindow * window = new QMainWindow();
 private slots:
     void closeEvent (QCloseEvent *event);

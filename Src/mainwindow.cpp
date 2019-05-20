@@ -29,6 +29,7 @@
 #include <QTime>
 #include <QPushButton>
 #include <QLineEdit>
+#define ERRORMESSAGE "[Mise à jour impossible - Accès non-autorisé]"
 #include <QFileInfo>
 
 using namespace QtCharts;
@@ -77,17 +78,13 @@ MainWindow::MainWindow(QWidget *parent) :
     process.waitForFinished(-1);
     QString stdouty = process.readAllStandardOutput();
     if(stdouty != "Dark\n"){
-        QMessageBox msgBox;
-        msgBox.setIcon(QMessageBox::Information);
-        msgBox.setText("Avertissement");
-        msgBox.setStandardButtons(QMessageBox::Ok);
-        msgBox.setDetailedText("Il se peut qu'il y est quelques problèmes sur le contraste de certain mots. Le programme reste néanmoins fonctionnel et lisable.");
-        msgBox.setInformativeText("L'apparence du logiciel a été conçu pour être optimisé avec le thème noir de OSX Mojave");
-        msgBox.exec();
-        ui->label_15->setText("Trouver <b color:\"black\">B</b>");
-        ui->label_15->setText("Trouver <b color:\"black\">X</b>");
-        ui->label_15->setText("Trouver <b color:\"black\">Y</b>");
-        ui->label_22->setText("Trouver l'<b color:\"black\">intersection</b>");
+        ui->label_15->setText("Trouver <b color:\"#000000\">B</b>");
+        delay(1);
+        ui->label_15->setText("Trouver <b color:\"#000000\">X</b>");
+        delay(1);
+        ui->label_15->setText("Trouver <b color:\"#000000\">Y</b>");
+        delay(1);
+        ui->label_22->setText("Trouver l'<b color:\"#000000\">intersection</b>");
     }
     delay(1);
     Init();
@@ -112,7 +109,6 @@ void MainWindow::Init(){
     ui->tab_10->setLayout(ui->gridLayout_7);
     ui->tab_11->setLayout(ui->gridLayout_8);
     delay(1);
-    
     setFixedSize(size());
     delay(1);
     GetProgramInfo();
@@ -126,11 +122,9 @@ void MainWindow::Init(){
 
 void MainWindow::GetProgramInfo(){
 	QFile file("info.json");
-	
-	file.open(QIODevice::ReadOnly | QIODevice::Text);
+    file.open(QIODevice::ReadOnly);
 	QByteArray jsonData = file.readAll();
 	file.close();
-
 	QJsonDocument document = QJsonDocument::fromJson(jsonData);
 	QJsonObject object = document.object();
 	QJsonValue value = object.value("exercices");
@@ -140,6 +134,7 @@ void MainWindow::GetProgramInfo(){
 		QuVector.push_back({ v.toObject().value("htmlText").toString(),v.toObject().value("Answer").toString(),
 			v.toObject().value("AnswerLabel").toString(),v.toObject().value("Answer_Explication").toString()});
 	}
+
     exer = new Exercise(QuVector,ui->Exer_Input,ui->Exer_RichText,ui->Exer_QuestionNum,ui->Exer_Recherche,ui->Exer_NextBtn, ui->Exer_Reset, ui->tabWidget);
     exer->FirstQuestion();
 	value = object.value("Footer");
@@ -150,6 +145,20 @@ void MainWindow::GetProgramInfo(){
 	author->setTextInteractionFlags(Qt::TextBrowserInteraction);
 	author->setFocusPolicy(Qt::FocusPolicy::NoFocus);
 	author->setOpenExternalLinks(true);
+    if(QuVector.size() == 0){
+       author->setText("Une erreur de mise à jour s'est produite, le programme est instable.");
+       setWindowTitle(ERRORMESSAGE);
+       ui->Exer_NextBtn->setText(ERRORMESSAGE);
+       ui->pushButton->setText(ERRORMESSAGE);
+       ui->pushButton_2->setText(ERRORMESSAGE);
+       ui->pushButton_3->setText(ERRORMESSAGE);
+       ui->pushButton_4->setText(ERRORMESSAGE);
+       ui->pushButton->setEnabled(false);
+       ui->pushButton_2->setEnabled(false);
+       ui->pushButton_3->setEnabled(false);
+       ui->pushButton_4->setEnabled(false);
+       ui->Exer_NextBtn->setEnabled(false);
+    }
 	statusBar()->addWidget(author);
 }
 
@@ -330,14 +339,12 @@ void MainWindow::GenerateRule (QString a, QString b, QLineEdit * lineEdit){
     QString rule = "Regle: y = " + QString::number(_a) + "x + " + QString::number(_b);
     lineEdit->setText(rule);
 }
-
 enum Fonction {TROUVERX, TROUVERB, TROUVERY};
 void Calcul(Fonction f, QString arg1, QString arg2, QString arg3, QLineEdit * lineEdit){
     if(doesHaveChar(arg1) || doesHaveChar(arg2) || doesHaveChar(arg3)){
         lineEdit->setText("Calcul impossible");
         return;
     }
-
     QString result;
     switch (f) {
     case TROUVERX:
@@ -472,20 +479,38 @@ void MainWindow::on_lineEdit_textChanged(const QString &arg1)
 
 void MainWindow::on_pushButton_clicked()
 {   
-    ImageWindow1 * image = new ImageWindow1("Relations et fonctions/explication",":/new/prefix1/_pdp_sq_.jpg");
+    QString WinName = "Relations et fonctions/explication";
+    for(ImageWindow1* i: IW1List){
+        if(i->windowTitle() == WinName)
+            i->close();
+    }
+    ImageWindow1 * image = new ImageWindow1(WinName,":/new/prefix1/_pdp_sq_.jpg");
     image->show();
+    IW1List.push_back(image);
 }
 
 void MainWindow::on_pushButton_3_clicked()
 {
+    QString WinName = "Relations et fonctions/mode de representation";
+    for(ImageWindow1* i: IW1List){
+        if(i->windowTitle() == WinName)
+            i->close();
+    }
     ImageWindow1 * image = new ImageWindow1("Relations et fonctions/mode de representation",":/new/prefix1/_pdp_sq_.jpg");
     image->show();
+    IW1List.push_back(image);
 }
 
 void MainWindow::on_pushButton_4_clicked()
 {
+    QString WinName = "Algebre/Inequation";
+    for(ImageWindow1* i: IW1List){
+        if(i->windowTitle() == WinName)
+            i->close();
+    }
     ImageWindow1 * image = new ImageWindow1("Algebre/Inequation",":/new/prefix1/inequation.jpg");
     image->show();
+    IW1List.push_back(image);
 }
 
 void MainWindow::on_lineEdit_2_textChanged(const QString &arg1)

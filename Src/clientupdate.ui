@@ -38,7 +38,7 @@
         <string notr="true">color: rgb(255, 255, 255);</string>
        </property>
        <property name="text">
-        <string>Mise à jour du programme...</string>
+        <string>Mise à jour du programme en cours...</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -76,7 +76,7 @@
      <x>0</x>
      <y>0</y>
      <width>627</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>

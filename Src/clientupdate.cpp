@@ -53,9 +53,9 @@ void ClientUpdate::downloadFinished(QNetworkReply *data) {
     else {
         ui->label->setText("Preparation en cours...");
 	}
-    if (!localFile.open(QIODevice::ReadWrite | QIODevice::Append | QIODevice::Text))
+    if (!localFile.open(QIODevice::ReadWrite))
     {
-		ui->label->setText("Une erreur s'est produite [FA::403]");
+        ui->label->setText("Une erreur s'est produite [Accès non-autorisé]");
 		QTime dieTime = QTime::currentTime().addMSecs(2000);
 		while (QTime::currentTime() < dieTime)
 		{
@@ -85,7 +85,6 @@ void ClientUpdate::download() {
 void ClientUpdate::downloadProgress(qint64 recieved, qint64 total) {
     ui->progressBar->setMaximum(total);
     ui->progressBar->setValue(recieved);
-
 }
 
 ClientUpdate::~ClientUpdate()
