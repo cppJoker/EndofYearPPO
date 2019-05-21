@@ -1,5 +1,5 @@
 {
-    "Footer" : "Relations et fonctions || Version 20-5-19",
+    "Footer" : "Relations et fonctions || Mis à jour le 21/05/19 (jj/mm/aa) || Version stable",
     "exercices": [
 
         {
@@ -39,7 +39,7 @@
 
         {
 
-            "htmlText": "<dl style=\"text-align:center\"> Simon a 10$, à chaque semaine, il obtient 5$. <br> Après 13 semaines, combien d'argent aura-t-il? <br><br><i>N'oubliez pas d'inclure les symboles: <strike>50</strike> -> 50$</i>",
+            "htmlText": "<dl style=\"text-align:center\"> Simon a 10$, à chaque semaine, il obtient 5$. <br> Après 13 semaines, combien d'argent aura-t-il? <br><br><i>N'oubliez pas de specifier les réponses: <strike>50</strike> -> 50$</i>",
 
             "Answer": "75$",
 
@@ -53,11 +53,23 @@
 
             "htmlText": "<dl style=\"text-align:center\"> David a <b>12$</b> et Jason a <b>5$</b> sur son compte bancaire.<br>À chaque semaine, David reçoit <b>12$</b> et Jason reçoit <b>13$</b><br>Combien de semaine passeront avant que les deux aient le même montant d'argent?<br><br><i>N'oubliez pas de specifier les réponses: <strike>50</strike> -> 50 semaines</i>",
 
-            "Answer": "70",
+            "Answer": "7 semaines",
 
-            "AnswerLabel": "b = ",
+            "AnswerLabel": "Réponse: ",
 
-            "Answer_Explication": "La variable b était <b>70</b>"
+            "Answer_Explication": "<b>7</b> semaines passeront avant qu'ils aient le même nombre d'argent(96$)"
+
+        },
+
+        {
+
+            "htmlText": "<dl style=\"text-align:center\"> Samuel a <b>13$</b> et Jade a <b>5$</b> sur son compte bancaire.<br>À chaque semaine, David reçoit <b>12$</b> et Jade reçoit <b>14$</b><br>Combien d'argent auront-t-ils quand le montant sera le même?<br><br><i>N'oubliez pas de specifier les réponses: <strike>50</strike> -> 50$</i>",
+
+            "Answer": "61$",
+
+            "AnswerLabel": "Réponse: ",
+
+            "Answer_Explication": "Ils auront tout les deux <b>61$</b> quand ils atteindrons le même montant d'argent (après 4 semaines)."
 
         }
 
