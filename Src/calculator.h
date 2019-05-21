@@ -13,6 +13,7 @@
 #include <cmath>
 #include <cctype>
 #include <regex>
+#include "imagewindow1.h"
 
 struct Coords{
     double x;

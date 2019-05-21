@@ -47,6 +47,18 @@
 
             "Answer_Explication": "Dans 12 semaines, il aura <b>75$</b>"
 
+        },
+
+        {
+
+            "htmlText": "<dl style=\"text-align:center\"> David a <b>12$</b> et Jason a <b>5$</b> sur son compte bancaire.<br>À chaque semaine, David reçoit <b>12$</b> et Jason reçoit <b>13$</b><br>Combien de semaine passeront avant que les deux aient le même montant d'argent?<br><br><i>N'oubliez pas de specifier les réponses: <strike>50</strike> -> 50 semaines</i>",
+
+            "Answer": "70",
+
+            "AnswerLabel": "b = ",
+
+            "Answer_Explication": "La variable b était <b>70</b>"
+
         }
 
     ]

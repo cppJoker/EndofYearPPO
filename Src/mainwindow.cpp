@@ -533,5 +533,8 @@ void MainWindow::on_Exer_Reset_clicked()
 
 void MainWindow::on_Exer_NextBtn_clicked()
 {
+    for(ImageWindow1* i: IW1List){
+            i->close();
+    }
     exer->NextQuestion();
 }

@@ -15,6 +15,9 @@
 #include <QTabWidget>
 #include <QTabBar>
 #include <QCoreApplication>
+#include "calculator.h"
+#include "mainwindow.h"
+#include "imagewindow1.h"
 #define BEGINOFEXER ("Commencer la série d'exercises")
 #define ENDOFEXER ("Fin de la série")
 #define NEXTOFEXER ("Prochaine question")
