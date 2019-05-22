@@ -134,8 +134,11 @@ public:
             QChar c = str[i];
             if(c == ','){
                 str[i] = '.';
+            }else if(c.isLetter() && c != '-') {
+                str[i] = ' ';
             }
         }
+        str = str.simplified();
         if(str != _exercice.questions[_exercice.Level].Answer){
             LoadContent(FALSE);
         }else{

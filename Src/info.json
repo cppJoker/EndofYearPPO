@@ -39,9 +39,9 @@
 
         {
 
-            "htmlText": "<dl style=\"text-align:center\"> Simon a 10$, à chaque semaine, il obtient 5$. <br> Après 13 semaines, combien d'argent aura-t-il? <br><br><i>N'oubliez pas de specifier les réponses: <strike>50</strike> -> 50$</i>",
+            "htmlText": "<dl style=\"text-align:center\"> Simon a 10$, à chaque semaine, il obtient 5$. <br> Après 13 semaines, combien d'argent aura-t-il? <br>",
 
-            "Answer": "75$",
+            "Answer": "75",
 
             "AnswerLabel": "Dans 12 semaines, il aura ",
 
@@ -51,9 +51,9 @@
 
         {
 
-            "htmlText": "<dl style=\"text-align:center\"> David a <b>12$</b> et Jason a <b>5$</b> sur son compte bancaire.<br>À chaque semaine, David reçoit <b>12$</b> et Jason reçoit <b>13$</b><br>Combien de semaine passeront avant que les deux aient le même montant d'argent?<br><br><i>N'oubliez pas de specifier les réponses: <strike>50</strike> -> 50 semaines</i>",
+            "htmlText": "<dl style=\"text-align:center\"> David a <b>12$</b> et Jason a <b>5$</b> sur son compte bancaire.<br>À chaque semaine, David reçoit <b>12$</b> et Jason reçoit <b>13$</b><br>Combien de semaine passeront avant que les deux aient le même montant d'argent?<br>",
 
-            "Answer": "7 semaines",
+            "Answer": "7",
 
             "AnswerLabel": "Réponse: ",
 
@@ -63,9 +63,9 @@
 
         {
 
-            "htmlText": "<dl style=\"text-align:center\"> Samuel a <b>13$</b> et Jade a <b>5$</b> sur son compte bancaire.<br>À chaque semaine, David reçoit <b>12$</b> et Jade reçoit <b>14$</b><br>Combien d'argent auront-t-ils quand le montant sera le même?<br><br><i>N'oubliez pas de specifier les réponses: <strike>50</strike> -> 50$</i>",
+            "htmlText": "<dl style=\"text-align:center\"> Samuel a <b>13$</b> et Jade a <b>5$</b> sur son compte bancaire.<br>À chaque semaine, David reçoit <b>12$</b> et Jade reçoit <b>14$</b><br>Combien d'argent auront-t-ils quand le montant sera le même?<br>",
 
-            "Answer": "61$",
+            "Answer": "61",
 
             "AnswerLabel": "Réponse: ",
 
