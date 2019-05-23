@@ -119,7 +119,7 @@ public:
             tab->setTabEnabled(0, true);
             tab->setTabEnabled(2, true);
             Exer_RichText->setHtml("<dl style=\"text-align:center\">Fin des exercises! Vous avez eu <b>" +
-				QString::number(_exercice.Score) + "</b> bonne(s) réponse(s) sur <b>" + QString::number(_exercice.Length) + "</b>.");
+            QString::number(_exercice.Score) + "</b> bonne(s) réponse(s) sur <b>" + QString::number(_exercice.Length) + "</b>.");
 			Exer_Recherche->setText("Réponse:");
 			Exer_QuestionNum->setText("Question 1/?");
             Exer_NextBtn->setText(ZEROEXER);
@@ -134,7 +134,7 @@ public:
             QChar c = str[i];
             if(c == ','){
                 str[i] = '.';
-            }else if(c.isLetter() && c != '-') {
+            }else if((c.isLetter() || c.isSymbol()) && c != '-') {
                 str[i] = ' ';
             }
         }
