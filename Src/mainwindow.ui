@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>598</width>
-    <height>701</height>
+    <width>521</width>
+    <height>658</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -31,15 +31,15 @@
      <rect>
       <x>10</x>
       <y>0</y>
-      <width>571</width>
-      <height>671</height>
+      <width>681</width>
+      <height>621</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout">
      <item row="0" column="0">
       <widget class="QTabWidget" name="tabWidget">
        <property name="currentIndex">
-        <number>0</number>
+        <number>2</number>
        </property>
        <widget class="QWidget" name="tab_2">
         <attribute name="title">
@@ -99,34 +99,10 @@
                     </rect>
                    </property>
                    <layout class="QGridLayout" name="gridLayout_7">
-                    <item row="2" column="0">
-                     <widget class="QPushButton" name="pushButton">
-                      <property name="sizePolicy">
-                       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                        <horstretch>0</horstretch>
-                        <verstretch>0</verstretch>
-                       </sizepolicy>
-                      </property>
-                      <property name="cursor">
-                       <cursorShape>PointingHandCursor</cursorShape>
-                      </property>
-                      <property name="text">
-                       <string>Ouvrir: Relations et fonctions --&gt; Fonctions inverses</string>
-                      </property>
-                      <property name="checkable">
-                       <bool>false</bool>
-                      </property>
-                      <property name="checked">
-                       <bool>false</bool>
-                      </property>
-                      <property name="autoDefault">
-                       <bool>false</bool>
-                      </property>
-                      <property name="default">
-                       <bool>false</bool>
-                      </property>
-                      <property name="flat">
-                       <bool>true</bool>
+                    <item row="3" column="0">
+                     <widget class="Line" name="line_8">
+                      <property name="orientation">
+                       <enum>Qt::Horizontal</enum>
                       </property>
                      </widget>
                     </item>
@@ -142,7 +118,7 @@
                        <cursorShape>PointingHandCursor</cursorShape>
                       </property>
                       <property name="text">
-                       <string>Ouvrir: Relations et fonctions --&gt; Fonctions linéaire</string>
+                       <string>Les fonctions linéaires.</string>
                       </property>
                       <property name="flat">
                        <bool>true</bool>
@@ -156,25 +132,8 @@
                       </property>
                      </widget>
                     </item>
-                   </layout>
-                  </widget>
-                 </widget>
-                 <widget class="QWidget" name="tab_11">
-                  <attribute name="title">
-                   <string>Mode de representation</string>
-                  </attribute>
-                  <widget class="QWidget" name="gridLayoutWidget_8">
-                   <property name="geometry">
-                    <rect>
-                     <x>20</x>
-                     <y>30</y>
-                     <width>1011</width>
-                     <height>591</height>
-                    </rect>
-                   </property>
-                   <layout class="QGridLayout" name="gridLayout_8">
-                    <item row="0" column="0">
-                     <widget class="QPushButton" name="pushButton_3">
+                    <item row="2" column="0">
+                     <widget class="QPushButton" name="pushButton">
                       <property name="sizePolicy">
                        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
                         <horstretch>0</horstretch>
@@ -185,7 +144,7 @@
                        <cursorShape>PointingHandCursor</cursorShape>
                       </property>
                       <property name="text">
-                       <string>Ouvrir: Relations et fonctions/mode de representation</string>
+                       <string>Les fonctions inverses.</string>
                       </property>
                       <property name="checkable">
                        <bool>false</bool>
@@ -201,6 +160,123 @@
                       </property>
                       <property name="flat">
                        <bool>true</bool>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="4" column="0">
+                     <widget class="QPushButton" name="pushButton_6">
+                      <property name="sizePolicy">
+                       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                       </sizepolicy>
+                      </property>
+                      <property name="cursor">
+                       <cursorShape>PointingHandCursor</cursorShape>
+                      </property>
+                      <property name="text">
+                       <string>Les points d'intersections.</string>
+                      </property>
+                      <property name="checkable">
+                       <bool>false</bool>
+                      </property>
+                      <property name="checked">
+                       <bool>false</bool>
+                      </property>
+                      <property name="autoDefault">
+                       <bool>false</bool>
+                      </property>
+                      <property name="default">
+                       <bool>false</bool>
+                      </property>
+                      <property name="flat">
+                       <bool>true</bool>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </widget>
+                 <widget class="QWidget" name="tab_11">
+                  <attribute name="title">
+                   <string>Mode de représentation</string>
+                  </attribute>
+                  <widget class="QWidget" name="gridLayoutWidget_8">
+                   <property name="geometry">
+                    <rect>
+                     <x>20</x>
+                     <y>30</y>
+                     <width>1011</width>
+                     <height>591</height>
+                    </rect>
+                   </property>
+                   <layout class="QGridLayout" name="gridLayout_8">
+                    <item row="2" column="0">
+                     <widget class="QPushButton" name="pushButton_5">
+                      <property name="sizePolicy">
+                       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                       </sizepolicy>
+                      </property>
+                      <property name="cursor">
+                       <cursorShape>PointingHandCursor</cursorShape>
+                      </property>
+                      <property name="text">
+                       <string>Mode de représentation inverse.</string>
+                      </property>
+                      <property name="checkable">
+                       <bool>false</bool>
+                      </property>
+                      <property name="checked">
+                       <bool>false</bool>
+                      </property>
+                      <property name="autoDefault">
+                       <bool>false</bool>
+                      </property>
+                      <property name="default">
+                       <bool>false</bool>
+                      </property>
+                      <property name="flat">
+                       <bool>true</bool>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="0" column="0">
+                     <widget class="QPushButton" name="pushButton_3">
+                      <property name="sizePolicy">
+                       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                       </sizepolicy>
+                      </property>
+                      <property name="cursor">
+                       <cursorShape>PointingHandCursor</cursorShape>
+                      </property>
+                      <property name="text">
+                       <string>Mode de représentation linéaire.</string>
+                      </property>
+                      <property name="checkable">
+                       <bool>false</bool>
+                      </property>
+                      <property name="checked">
+                       <bool>false</bool>
+                      </property>
+                      <property name="autoDefault">
+                       <bool>false</bool>
+                      </property>
+                      <property name="default">
+                       <bool>false</bool>
+                      </property>
+                      <property name="flat">
+                       <bool>true</bool>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="1" column="0">
+                     <widget class="Line" name="line_7">
+                      <property name="orientation">
+                       <enum>Qt::Horizontal</enum>
                       </property>
                      </widget>
                     </item>
@@ -557,7 +633,7 @@
                              <item>
                               <widget class="QCheckBox" name="checkBox">
                                <property name="text">
-                                <string>Generer un graphique</string>
+                                <string>Générer un graphique</string>
                                </property>
                                <property name="checked">
                                 <bool>true</bool>

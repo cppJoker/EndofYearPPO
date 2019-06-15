@@ -331,12 +331,12 @@ void MainWindow::GenerateRule (QString a, QString b, QLineEdit * lineEdit){
         return;
         }
     if(a.toDouble() == 0.00000000000){
-        lineEdit->setText("Calcul impossbile: a = 0 (x * 0 = 0)");
+        lineEdit->setText("Calcul impossbile");
         return;
     }
     double _a = a.toDouble();
     double _b = b.toDouble();
-    QString rule = "Regle: y = " + QString::number(_a) + "x + " + QString::number(_b);
+    QString rule = "Règle: y = " + QString::number(_a) + "x + " + QString::number(_b);
     lineEdit->setText(rule);
 }
 enum Fonction {TROUVERX, TROUVERB, TROUVERY};
@@ -470,55 +470,48 @@ void MainWindow::on_MainWindow_destroyed()
 
 void MainWindow::on_lineEdit_textChanged(const QString &arg1)
 {
-    QString nw = arg1;
-    if((arg1.toInt() <= 1) || doesHaveChar(nw)){
-        ui->lineEdit->setText("2");
-    }
+
 }
 
 
 void MainWindow::on_pushButton_clicked()
 {   
-    QString WinName = "Relations et fonctions/explication";
+    QString WinName = "Inverse";
     for(ImageWindow1* i: IW1List){
         if(i->windowTitle() == WinName)
             i->close();
     }
-    ImageWindow1 * image = new ImageWindow1(WinName,":/new/prefix1/_pdp_sq_.jpg");
+    ImageWindow1 * image = new ImageWindow1(WinName,":/new/prefix1/Inverse.jpg");
     image->show();
     IW1List.push_back(image);
 }
 
 void MainWindow::on_pushButton_3_clicked()
 {
-    QString WinName = "Relations et fonctions/mode de representation";
+    QString WinName = "Mode de representation linéaire";
     for(ImageWindow1* i: IW1List){
         if(i->windowTitle() == WinName)
             i->close();
     }
-    ImageWindow1 * image = new ImageWindow1("Relations et fonctions/mode de representation",":/new/prefix1/_pdp_sq_.jpg");
+    ImageWindow1 * image = new ImageWindow1(WinName,":/new/prefix1/Mode Line.jpg");
     image->show();
     IW1List.push_back(image);
 }
 
 void MainWindow::on_pushButton_4_clicked()
 {
-    QString WinName = "Algebre/Inequation";
+    QString WinName = "Linéaire";
     for(ImageWindow1* i: IW1List){
         if(i->windowTitle() == WinName)
             i->close();
     }
-    ImageWindow1 * image = new ImageWindow1("Algebre/Inequation",":/new/prefix1/inequation.jpg");
+    ImageWindow1 * image = new ImageWindow1(WinName,":/new/prefix1/Lineaire.jpg");
     image->show();
     IW1List.push_back(image);
 }
 
 void MainWindow::on_lineEdit_2_textChanged(const QString &arg1)
 {
-    QString nw = arg1;
-    if((arg1.toInt() <= 1) || doesHaveChar(nw)){
-        ui->lineEdit_2->setText("2");
-    }
 }
 
 void MainWindow::on_Demarche1_Regle_textChanged(const QString &arg1)
@@ -537,4 +530,29 @@ void MainWindow::on_Exer_NextBtn_clicked()
             i->close();
     }
     exer->NextQuestion();
+}
+
+void MainWindow::on_pushButton_5_clicked()
+{
+
+    QString WinName = "Mode de representation inverse";
+    for(ImageWindow1* i: IW1List){
+        if(i->windowTitle() == WinName)
+            i->close();
+    }
+    ImageWindow1 * image = new ImageWindow1(WinName,":/new/prefix1/Mode Inverse.jpg");
+    image->show();
+    IW1List.push_back(image);
+}
+
+void MainWindow::on_pushButton_6_clicked()
+{
+    QString WinName = "Les points d'intersections";
+    for(ImageWindow1* i: IW1List){
+        if(i->windowTitle() == WinName)
+            i->close();
+    }
+    ImageWindow1 * image = new ImageWindow1(WinName,":/new/prefix1/Intersec.JPG");
+    image->show();
+    IW1List.push_back(image);
 }
