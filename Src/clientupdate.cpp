@@ -47,11 +47,11 @@ void ClientUpdate::downloadFinished(QNetworkReply *data) {
 	QString DataAsString(sdata);
 	QFile localFile("info.json");
 	if (fileExists("info.json") && DataAsString!="") {
-		ui->label->setText("Preparation en cours...");
+        ui->label->setText("Mise à jour en cours...");
 		localFile.remove();
 	}
     else {
-        ui->label->setText("Preparation en cours...");
+        ui->label->setText("Mise à jour en cours...");
 	}
     if (!localFile.open(QIODevice::ReadWrite))
     {
