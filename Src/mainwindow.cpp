@@ -21,8 +21,7 @@
 #include <QTime>
 #include <QPushButton>
 #include <QLineEdit>
-
-using namespace QtCharts;
+#include <QtCharts>
 
 void delay( int millisecondsToWait )
 {
@@ -64,6 +63,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QProcess process;
     process.start("defaults read -g AppleInterfaceStyle");
     process.waitForFinished(-1);
+
     QString stdout = process.readAllStandardOutput();
     if(stdout != "Dark\n"){
         QMessageBox msgBox;
